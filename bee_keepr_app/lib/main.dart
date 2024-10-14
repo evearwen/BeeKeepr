@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
+// import 'src/sample_feature/forum.dart';
+
 
 void main() async {
   // Set up the SettingsController, which will glue user settings to multiple

@@ -6,8 +6,9 @@ import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'sample_feature/forum.dart'; 
 
-/// The Widget that configures your application.
+
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
@@ -50,36 +51,49 @@ class MyApp extends StatelessWidget {
           //
           // The appTitle is defined in .arb files found in the localization
           // directory.
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
+onGenerateRoute: (RouteSettings routeSettings) {
+  switch (routeSettings.name) {
+    case SettingsView.routeName:
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          return SettingsView(controller: settingsController);
+        },
+      );
+    case SampleItemDetailsView.routeName:
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          return const SampleItemDetailsView();
+        },
+      );
+    case SampleItemListView.routeName:
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          return const SampleItemListView();
+        },
+      );
+    case ForumPage.routeName:
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          return ForumPage(); 
+        },
+      );
+    default:
+      return MaterialPageRoute<void>(
+        settings: routeSettings,
+        builder: (BuildContext context) {
+          return const SampleItemListView(); 
+        },
+      );
+  }
+},
 
-          // Define a light and dark color theme. Then, read the user's
-          // preferred ThemeMode (light, dark, or system default) from the
-          // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
-          themeMode: settingsController.themeMode,
-
-          // Define a function to handle named routes in order to support
-          // Flutter web url navigation and deep linking.
-          onGenerateRoute: (RouteSettings routeSettings) {
-            return MaterialPageRoute<void>(
-              settings: routeSettings,
-              builder: (BuildContext context) {
-                switch (routeSettings.name) {
-                  case SettingsView.routeName:
-                    return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
-                  default:
-                    return const SampleItemListView();
-                }
-              },
-            );
-          },
         );
       },
     );
   }
 }
+
