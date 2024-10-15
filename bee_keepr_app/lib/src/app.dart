@@ -46,6 +46,17 @@ class MyApp extends StatelessWidget {
             Locale('en', ''), // English, no country code
           ],
 
+
+
+          onGenerateTitle: (BuildContext context) =>
+              AppLocalizations.of(context)!.appTitle,
+          // Define a light and dark color theme. Then, read the user's
+          // preferred ThemeMode (light, dark, or system default) from the
+          // SettingsController to display the correct theme.
+          theme: ThemeData(),
+          darkTheme: ThemeData.dark(),
+          themeMode: settingsController.themeMode,
+
           // Use AppLocalizations to configure the correct application title
           // depending on the user's locale.
           //
