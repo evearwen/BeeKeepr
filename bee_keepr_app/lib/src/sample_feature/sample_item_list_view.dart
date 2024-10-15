@@ -33,6 +33,7 @@ class SampleItemListView extends StatelessWidget {
         ],
       ),
 
+      //added the forum option to the list view
       body: ListView.builder(
         itemCount: items.length + 1, 
         itemBuilder: (BuildContext context, int index) {
@@ -66,7 +67,7 @@ class SampleItemListView extends StatelessWidget {
   }
 }
 
-/// A placeholder class that represents an entity or model.
+
 class SampleItem {
   const SampleItem(this.id);
 
