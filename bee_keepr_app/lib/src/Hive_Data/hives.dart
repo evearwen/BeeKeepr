@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'hive_item.dart';
+import 'package:bee_keepr_app/src/hive_data/hive_item.dart';
 
 class Hives extends StatefulWidget {
   const Hives({super.key});
