@@ -1,6 +1,7 @@
 import 'package:bee_keepr_app/src/about_page.dart';
 import 'package:bee_keepr_app/src/notes/notes.dart';
 import 'package:bee_keepr_app/src/learn_page.dart';
+import 'package:bee_keepr_app/src/Hive_Data/Hives.dart';
 import 'package:flutter/material.dart';
 
 // creates Hexagonal Path
@@ -87,9 +88,12 @@ class MenuPage extends StatelessWidget {
               height: 800,
               child: Stack(children: [
                 Positioned(
-                    left: 80,
-                    top: 20,
-                    child: Image.asset("assets/images/3.0x/flutter_logo.png")),
+                    left: 125,
+                    top: 40,
+                    child: Image.asset(
+                      "assets/images/beekeepr_logo.png",
+                      scale: 6,
+                    )),
                 Positioned(
                   top: hiveOffsetTop,
                   child: Column(
@@ -129,6 +133,11 @@ class MenuPage extends StatelessWidget {
                       SizedBox(height: hexSpace),
                       HexagonalButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Hives()),
+                            );
                             // Hive Data Navigation
                           },
                           label: "Hives"),
