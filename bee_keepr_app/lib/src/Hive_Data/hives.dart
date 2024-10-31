@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_item.dart';
+import 'package:bee_keepr_app/src/hive_data/hive_edit.dart';
 
 class Hives extends StatefulWidget {
   const Hives({super.key});
@@ -9,7 +10,6 @@ class Hives extends StatefulWidget {
 }
 
 class _HivesState extends State<Hives> {
-  // List of hive titles (initially empty or with sample data)
   final List<String> hiveTitles = ['Hive 1', 'Hive 2', 'Hive 3', 'Hive 4'];
 
   void _addNewHive() {
@@ -80,7 +80,16 @@ class _HivesState extends State<Hives> {
             backgroundColor: const Color(0xFFE9AB17),
             padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
           ),
-          onPressed: _addNewHive,
+          onPressed: () async {
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HiveEdit()),
+            );
+            //! Will have to add a check to see if edit hive was called from Hives page or HiveItem
+            //! If its called from Hives Page we would run the below and pass in the title as input
+            //! Otherwise we want to edit the existing hive
+            _addNewHive();
+          },
           child: const Text("New Hive", style: TextStyle(fontSize: 30)),
         ),
       ),
