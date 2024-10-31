@@ -1,4 +1,5 @@
 import 'package:bee_keepr_app/src/about_page.dart';
+import 'package:bee_keepr_app/src/settings_page.dart';
 import 'package:flutter/material.dart';
 
 // creates Hexagonal Path
@@ -28,9 +29,16 @@ class HexagonClipper extends CustomClipper<Path> {
 class HexagonalButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String label;
+  final Color defaultColor;
+  final Color hoverColor;
 
-  const HexagonalButton(
-      {super.key, required this.onPressed, required this.label});
+  const HexagonalButton({
+    super.key,
+    required this.onPressed,
+    required this.label,
+    this.defaultColor = Colors.white,
+    this.hoverColor = Colors.grey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +138,11 @@ class MenuPage extends StatelessWidget {
                       HexagonalButton(
                           onPressed: () {
                             // Settings Navigation
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SettingsPage()),
+                            );
                           },
                           label: "Settings"),
                     ],
