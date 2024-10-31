@@ -1,4 +1,5 @@
 import 'package:bee_keepr_app/src/about_page.dart';
+import 'package:bee_keepr_app/src/notes/notes.dart';
 import 'package:flutter/material.dart';
 
 // creates Hexagonal Path
@@ -145,7 +146,11 @@ class MenuPage extends StatelessWidget {
                         const SizedBox(height: 150),
                         HexagonalButton(
                             onPressed: () {
-                              // Notes Navigation
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Notes())); // Notes Navigation
                             },
                             label: "Notes"),
                         SizedBox(height: hexSpace),
