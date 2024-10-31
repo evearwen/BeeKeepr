@@ -70,12 +70,12 @@ class _NoteItemState extends State<NoteItem> {
             ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: _isEditing
             ? TextField(
                 controller: _contentController,
-                maxLines: null,
+                maxLines: null, // Allow TextField to expand as much as needed
                 decoration: const InputDecoration(
                   hintText: 'Enter note details...',
                   border: OutlineInputBorder(),
