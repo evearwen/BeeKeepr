@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class NoteItem extends StatefulWidget {
   final String title;
   final String content;
+  final VoidCallback onDelete;
 
-  const NoteItem({super.key, required this.title, required this.content});
+  const NoteItem(
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.onDelete});
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -13,7 +18,6 @@ class NoteItem extends StatefulWidget {
 class _NoteItemState extends State<NoteItem> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
-
   bool _isEditing = false;
 
   @override
@@ -60,8 +64,8 @@ class _NoteItemState extends State<NoteItem> {
             IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                //! Add delete functionality
-                Navigator.pop(context, 'delete');
+                widget.onDelete(); // Call delete callback
+                Navigator.pop(context); // Close the page after deleting
               },
             ),
         ],
@@ -82,17 +86,6 @@ class _NoteItemState extends State<NoteItem> {
                 style: const TextStyle(fontSize: 18),
               ),
       ),
-      floatingActionButton: _isEditing
-          ? FloatingActionButton(
-              onPressed: () {
-                // You might want to save the note here
-                setState(() {
-                  _isEditing = false;
-                });
-              },
-              child: const Icon(Icons.check),
-            )
-          : null,
     );
   }
 }

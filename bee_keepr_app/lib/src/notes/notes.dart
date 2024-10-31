@@ -9,7 +9,6 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
-  // List of Note titles (initially empty or with sample data)
   final List<String> NoteTitles = ['Note 1', 'Note 2', 'Note 3', 'Note 4'];
 
   void _addNewNote() {
@@ -18,7 +17,7 @@ class _NotesState extends State<Notes> {
     });
   }
 
-  void _deleteNote(int index) {
+  void _deleteNoteAt(int index) {
     setState(() {
       NoteTitles.removeAt(index);
     });
@@ -52,7 +51,7 @@ class _NotesState extends State<Notes> {
                 child: const Icon(Icons.delete, color: Colors.white),
               ),
               onDismissed: (direction) {
-                _deleteNote(index);
+                _deleteNoteAt(index);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('$title deleted')),
                 );
@@ -66,6 +65,7 @@ class _NotesState extends State<Notes> {
                       builder: (context) => NoteItem(
                         title: title,
                         content: "",
+                        onDelete: () => _deleteNoteAt(index),
                       ),
                     ),
                   );
