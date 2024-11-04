@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'globals.dart' as globals;
 
 class SettingsPage extends StatefulWidget {
-  final dynamic username;
-  final dynamic firstName;
-  final dynamic lastName;
-  final dynamic email;
-
-  const SettingsPage(
-      {super.key,
-      this.username = "The African Ambusher",
-      this.firstName = "Killa",
-      this.lastName = "B.",
-      this.email = "BeeWarlord@hotmail.com"});
+  const SettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final TextEditingController _firstNameController =
+      TextEditingController(); // Controller to manage the TextField
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String getGlobalName() {
+    return globals.firstName;
+  }
+
+  void _getUserInput() {
+    setState(() {
+      globals.firstName = _firstNameController.text;
+      globals.lastName = _lastNameController.text;
+      globals.password = _passwordController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                widget.username,
+                globals.firstName,
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -61,14 +69,12 @@ class _SettingsPageState extends State<SettingsPage> {
               "New First Name",
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(
+            SizedBox(
                 width: 400,
                 child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter New First Name',
-                  ),
+                  controller: _firstNameController,
+                  decoration: const InputDecoration(
+                      labelText: "Enter New First Name Here"),
                 )),
             const SizedBox(height: 10),
             // Last Name Input
@@ -76,35 +82,34 @@ class _SettingsPageState extends State<SettingsPage> {
               "New Last Name",
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(
+            SizedBox(
                 width: 400,
                 child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter New Last Name',
-                  ),
+                  controller: _lastNameController,
+                  decoration: const InputDecoration(
+                      labelText: "Enter New Last Name Here"),
                 )),
+
+            const SizedBox(height: 10),
             const SizedBox(height: 10),
             // Password Input
             const Text(
-              "New Last Name",
+              "New Password",
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(
+            SizedBox(
                 width: 400,
                 child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter New Password',
-                  ),
+                  controller: _passwordController,
+                  decoration: const InputDecoration(
+                      labelText: "Enter New Password Here"),
                 )),
+            const SizedBox(height: 10),
             const SizedBox(height: 20),
             // Save Changes Button
-            const ElevatedButton(
-              onPressed: null,
-              child: Text(
+            ElevatedButton(
+              onPressed: _getUserInput,
+              child: const Text(
                 "Save Changes",
                 style: TextStyle(color: Colors.black),
               ),

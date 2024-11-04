@@ -139,7 +139,7 @@ class MenuPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SettingsPage()),
+                                  builder: (context) => SettingsPage()),
                             );
                           },
                           label: "Settings"),
