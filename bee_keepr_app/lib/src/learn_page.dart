@@ -16,6 +16,7 @@ class _LearnPageState extends State<LearnPage> {
       articleTitle = newTitle;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,7 @@ class _LearnPageState extends State<LearnPage> {
         children: [
           // Vertical menu bar on the left
           Container(
-            width: 250,
+            width: 125,
             color: const Color(0xFFE9AB17),
             child: Column(
               children: [
@@ -48,12 +49,16 @@ class _LearnPageState extends State<LearnPage> {
                   onTap: () {
                     updateTitle('Lesson 1');
                     setState(() {
-                      showLesson[0] = !showLesson[0]; 
+                      showLesson[0] = !showLesson[0];
                     });
                   },
                   submenu: [
-                    MenuItem(title: 'Lesson 1.1', onTap: () => updateTitle('Lesson 1.1')),
-                    MenuItem(title: 'Lesson 1.2', onTap: () => updateTitle('Lesson 1.2')),
+                    MenuItem(
+                        title: 'Lesson 1.1',
+                        onTap: () => updateTitle('Lesson 1.1')),
+                    MenuItem(
+                        title: 'Lesson 1.2',
+                        onTap: () => updateTitle('Lesson 1.2')),
                   ],
                 ),
                 ExpandableMenuItem(
@@ -66,8 +71,12 @@ class _LearnPageState extends State<LearnPage> {
                     });
                   },
                   submenu: [
-                    MenuItem(title: 'Lesson 2.1', onTap: () => updateTitle('Lesson 2.1')),
-                    MenuItem(title: 'Lesson 2.2', onTap: () => updateTitle('Lesson 2.2')),
+                    MenuItem(
+                        title: 'Lesson 2.1',
+                        onTap: () => updateTitle('Lesson 2.1')),
+                    MenuItem(
+                        title: 'Lesson 2.2',
+                        onTap: () => updateTitle('Lesson 2.2')),
                   ],
                 ),
                 MenuItem(
@@ -82,9 +91,10 @@ class _LearnPageState extends State<LearnPage> {
           ),
           // Main content area
           Expanded(
-            child:ArticleWidget(
-              title: articleTitle,
-              content: '''Scripts.com
+              child: SingleChildScrollView(
+                  child: ArticleWidget(
+            title: articleTitle,
+            content: '''Scripts.com
 Bee Movie
 By Jerry Seinfeld
 
@@ -110,14 +120,14 @@ Yellow, black. Yellow, black.
  :
 Ooh, black and yellow!
 Let's shake it up a little.''',
-              backgroundColor: Colors.lightBlue[50],
-            )
-          ),
+            backgroundColor: Colors.lightBlue[50],
+          ))),
         ],
       ),
     );
   }
 }
+
 class ArticleWidget extends StatelessWidget {
   final String title;
   final String content;
@@ -147,8 +157,7 @@ class ArticleWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (imageUrl != null) 
-              Image.network(imageUrl!),
+            if (imageUrl != null) Image.network(imageUrl!),
             SizedBox(height: 8),
             Text(
               title,

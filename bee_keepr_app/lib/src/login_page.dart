@@ -27,8 +27,11 @@ class LoginPage extends StatelessWidget {
           children: [
             Padding(
                 padding:
-                    const EdgeInsets.only(left: 100), // Logo Dimensional Offset
-                child: Image.asset("assets/images/3.0x/flutter_logo.png")),
+                    const EdgeInsets.only(left: 0), // Logo Dimensional Offset
+                child: Image.asset(
+                  "assets/images/beekeepr_logo.png",
+                  scale: 5,
+                )),
             const SizedBox(height: 20), // Space after Logo
             const Text("Protect the Bees",
                 style: TextStyle(
