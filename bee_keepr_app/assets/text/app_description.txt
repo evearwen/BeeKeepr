@@ -1,0 +1,29 @@
+Beekeepr is a free open-source software application that can run 
+on computersand mobiles devices. It is designed to give amateur 
+and seasoned beekeepers alike a comprehensive tool that combines key 
+features such as Hive Management, Notes, and Educational Lessons
+for all topics related to Bee Husbandry.
+
+Save the Bees, Save the World
+
+Any Questions? The development team can be
+contacted at "This_is_a_real_Email@beemail.com"
+
+Development Team:
+
+  Paul Bruzzi 
+    "Hi! I'm a developer! Here is my Picture"
+
+  Arwen Costello
+    "Hi! I'm a developer! Here is my Picture"
+
+  Anthony Fabius
+    "Hi! I'm a developer! Here is my Picture"
+
+  Russell Kim
+    "Hi! I'm a developer! Here is my Picture"
+
+  Kaelan Wilburn
+    "Hi! I'm a developer! Here is my Picture"
+
+

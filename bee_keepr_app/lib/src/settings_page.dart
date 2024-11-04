@@ -88,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 10),
             // Password Input
             const Text(
-              "New Last Name",
+              "New Password",
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(
