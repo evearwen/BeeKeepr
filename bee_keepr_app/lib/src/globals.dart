@@ -1,6 +1,6 @@
 library bee_keepr_app;
 
-String username = "Barry123";
+String username = "xxXBarryximus_Honeycimus_GatheridiusXxx";
 String password = "KillaBee123";
-String firstName = "Barry";
+String firstName = "Barry Billington";
 String lastName = "Bee";

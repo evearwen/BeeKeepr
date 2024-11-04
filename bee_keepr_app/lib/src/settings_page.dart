@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
 class SettingsPage extends StatefulWidget {
@@ -50,7 +49,23 @@ class _SettingsPageState extends State<SettingsPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                globals.firstName,
+                '${globals.lastName}, ${globals.firstName}',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                globals.username,
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -74,7 +89,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: TextField(
                   controller: _firstNameController,
                   decoration: const InputDecoration(
-                      labelText: "Enter New First Name Here"),
+                      labelText: "Enter New First Name Here",
+                      fillColor: Colors.white,
+                      filled: true),
                 )),
             const SizedBox(height: 10),
             // Last Name Input
@@ -87,7 +104,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: TextField(
                   controller: _lastNameController,
                   decoration: const InputDecoration(
-                      labelText: "Enter New Last Name Here"),
+                      labelText: "Enter New Last Name Here",
+                      fillColor: Colors.white,
+                      filled: true),
                 )),
 
             const SizedBox(height: 10),
@@ -102,7 +121,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: TextField(
                   controller: _passwordController,
                   decoration: const InputDecoration(
-                      labelText: "Enter New Password Here"),
+                      labelText: "Enter New Password Here",
+                      fillColor: Colors.white,
+                      filled: true),
                 )),
             const SizedBox(height: 10),
             const SizedBox(height: 20),
@@ -111,7 +132,8 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: _getUserInput,
               child: const Text(
                 "Save Changes",
-                style: TextStyle(color: Colors.black),
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
           ],
