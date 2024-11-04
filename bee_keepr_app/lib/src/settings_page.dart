@@ -19,9 +19,15 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _getUserInput() {
     setState(() {
-      globals.firstName = _firstNameController.text;
-      globals.lastName = _lastNameController.text;
-      globals.password = _passwordController.text;
+      if (_firstNameController.text.isNotEmpty) {
+        globals.firstName = _firstNameController.text;
+      }
+      if (_lastNameController.text.isNotEmpty) {
+        globals.lastName = _lastNameController.text;
+      }
+      if (_passwordController.text.isNotEmpty) {
+        globals.password = _passwordController.text;
+      }
     });
   }
 
