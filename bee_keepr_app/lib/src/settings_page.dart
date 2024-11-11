@@ -8,20 +8,31 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
+// Input Box Controllers
 class _SettingsPageState extends State<SettingsPage> {
-  final TextEditingController _firstNameController =
-      TextEditingController(); // Controller to manage the TextField
+  final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String getGlobalName() {
     return globals.firstName;
   }
 
+  // Save Changes to Personal Information
   void _getUserInput() {
     setState(() {
-      globals.firstName = _firstNameController.text;
-      globals.lastName = _lastNameController.text;
-      globals.password = _passwordController.text;
+      if (_firstNameController.text.isNotEmpty) {
+        globals.firstName = _firstNameController.text;
+      }
+      if (_lastNameController.text.isNotEmpty) {
+        globals.lastName = _lastNameController.text;
+      }
+      if (_usernameController.text.isNotEmpty) {
+        globals.username = _usernameController.text;
+      }
+      if (_passwordController.text.isNotEmpty) {
+        globals.password = _passwordController.text;
+      }
     });
   }
 
@@ -108,8 +119,21 @@ class _SettingsPageState extends State<SettingsPage> {
                       fillColor: Colors.white,
                       filled: true),
                 )),
-
             const SizedBox(height: 10),
+            // Password Input
+            const Text(
+              "New Username",
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(
+                width: 400,
+                child: TextField(
+                  controller: _usernameController,
+                  decoration: const InputDecoration(
+                      labelText: "Enter New Username Here",
+                      fillColor: Colors.white,
+                      filled: true),
+                )),
             const SizedBox(height: 10),
             // Password Input
             const Text(
@@ -125,8 +149,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       fillColor: Colors.white,
                       filled: true),
                 )),
-            const SizedBox(height: 10),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             // Save Changes Button
             ElevatedButton(
               onPressed: _getUserInput,
