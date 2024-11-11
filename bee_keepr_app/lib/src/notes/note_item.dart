@@ -4,12 +4,14 @@ class NoteItem extends StatefulWidget {
   final String title;
   final String content;
   final VoidCallback onDelete;
+  final ValueChanged<String> onTitleChanged; //adding so that users can edit note titles
 
   const NoteItem(
       {super.key,
       required this.title,
       required this.content,
-      required this.onDelete});
+      required this.onDelete,
+      required this.onTitleChanged});
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -23,8 +25,10 @@ class _NoteItemState extends State<NoteItem> {
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.title);
-    _contentController = TextEditingController(text: widget.content);
+    // _titleController = TextEditingController(text: widget.title);
+    // _contentController = TextEditingController(text: widget.content);
+    _titleController = TextEditingController(text: widget.title); 
+    _contentController = TextEditingController(text: widget.content); 
   }
 
   @override
@@ -38,6 +42,14 @@ class _NoteItemState extends State<NoteItem> {
     setState(() {
       _isEditing = !_isEditing;
     });
+  }
+
+  //save a new title
+    void _saveTitle() {
+    if (_isEditing) {
+      widget.onTitleChanged(_titleController.text); 
+      _toggleEditMode(); 
+    }
   }
 
   @override
@@ -58,7 +70,7 @@ class _NoteItemState extends State<NoteItem> {
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.save : Icons.edit),
-            onPressed: _toggleEditMode,
+            onPressed: _isEditing ? _saveTitle : _toggleEditMode, 
           ),
           if (_isEditing)
             IconButton(

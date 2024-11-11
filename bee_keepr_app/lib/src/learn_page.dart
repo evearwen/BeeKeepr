@@ -8,7 +8,7 @@ class LearnPage extends StatefulWidget {
 
 class _LearnPageState extends State<LearnPage> {
   // Manage the visibility of submenus
-  List<bool> showLesson = [false, false];
+  List<bool> showLesson = [false, false, false];
   String articleTitle = "Overview";
 
   void updateTitle(String newTitle) {
@@ -79,12 +79,23 @@ class _LearnPageState extends State<LearnPage> {
                         onTap: () => updateTitle('Lesson 2.2')),
                   ],
                 ),
-                MenuItem(
+                ExpandableMenuItem(
                   title: 'Lesson 3',
+                  isExpanded: showLesson[2],
                   onTap: () {
                     updateTitle('Lesson 3');
-                    articleTitle = 'Lesson 3';
+                    setState(() {
+                      showLesson[2] = !showLesson[2];
+                    });
                   },
+                  submenu: [
+                    MenuItem(
+                        title: 'Lesson 3.1',
+                        onTap: () => updateTitle('Lesson 3.1')),
+                    MenuItem(
+                        title: 'Lesson 3.2',
+                        onTap: () => updateTitle('Lesson 3.2')),
+                  ],
                 ),
               ],
             ),
@@ -213,18 +224,36 @@ class ExpandableMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextButton(
-          onPressed: onTap,
-          child: Text(
-            title,
-            style: TextStyle(color: Colors.white),
-          ),
+        Row( 
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 19.7),
+              child: TextButton(
+                onPressed: onTap,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Icon(
+                      isExpanded
+                          ? Icons.arrow_drop_up 
+                          : Icons.arrow_drop_down, 
+                      color: Colors.white, 
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-        if (isExpanded)
+        if (isExpanded) 
           Column(
             children: submenu
                 .map((item) => Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                      padding: const EdgeInsets.only(left: 40.0), 
                       child: item,
                     ))
                 .toList(),
