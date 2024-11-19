@@ -4,12 +4,14 @@ class NoteItem extends StatefulWidget {
   final String title;
   final String content;
   final VoidCallback onDelete;
+  final ValueChanged<String> onTitleChanged; //adding so that users can edit note titles
 
   const NoteItem(
       {super.key,
       required this.title,
       required this.content,
-      required this.onDelete});
+      required this.onDelete,
+      required this.onTitleChanged});
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -23,8 +25,10 @@ class _NoteItemState extends State<NoteItem> {
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.title);
-    _contentController = TextEditingController(text: widget.content);
+    // _titleController = TextEditingController(text: widget.title);
+    // _contentController = TextEditingController(text: widget.content);
+    _titleController = TextEditingController(text: widget.title); 
+    _contentController = TextEditingController(text: widget.content); 
   }
 
   @override
@@ -40,25 +44,52 @@ class _NoteItemState extends State<NoteItem> {
     });
   }
 
+  //save a new title
+    void _saveTitle() {
+    if (_isEditing) {
+      widget.onTitleChanged(_titleController.text); 
+      _toggleEditMode(); 
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFE9AB17),
         title: _isEditing
-            ? TextField(
-                controller: _titleController,
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-                decoration: const InputDecoration(border: InputBorder.none),
+              ? Container( 
+                padding: const EdgeInsets.symmetric(horizontal: 8.0), 
+                decoration: BoxDecoration( 
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0), 
+                  border: Border.all( 
+                    color: Colors.black, 
+                    width: 0.5, 
+                  ), 
+                ), 
+                child: TextField(
+                  controller: _titleController,
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
               )
+
+
+
             : Text(
                 _titleController.text,
                 style: const TextStyle(color: Colors.black),
               ),
+
+
+
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.save : Icons.edit),
-            onPressed: _toggleEditMode,
+            onPressed: _isEditing ? _saveTitle : _toggleEditMode, 
           ),
           if (_isEditing)
             IconButton(

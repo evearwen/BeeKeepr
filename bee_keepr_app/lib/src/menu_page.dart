@@ -1,4 +1,5 @@
 import 'package:bee_keepr_app/src/about_page.dart';
+import 'package:bee_keepr_app/src/login_page.dart';
 import 'package:bee_keepr_app/src/notes/notes.dart';
 import 'package:bee_keepr_app/src/learn_page.dart';
 import 'package:bee_keepr_app/src/settings_page.dart';
@@ -128,6 +129,11 @@ class MenuPage extends StatelessWidget {
                       const SizedBox(height: 80),
                       HexagonalButton(
                           onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()),
+                              );
                             // Exit App
                           },
                           label: "Exit"),
