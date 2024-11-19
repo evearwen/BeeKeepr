@@ -58,15 +58,34 @@ class _NoteItemState extends State<NoteItem> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFE9AB17),
         title: _isEditing
-            ? TextField(
-                controller: _titleController,
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-                decoration: const InputDecoration(border: InputBorder.none),
+              ? Container( 
+                padding: const EdgeInsets.symmetric(horizontal: 8.0), 
+                decoration: BoxDecoration( 
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0), 
+                  border: Border.all( 
+                    color: Colors.black, 
+                    width: 0.5, 
+                  ), 
+                ), 
+                child: TextField(
+                  controller: _titleController,
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
               )
+
+
+
             : Text(
                 _titleController.text,
                 style: const TextStyle(color: Colors.black),
               ),
+
+
+
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.save : Icons.edit),

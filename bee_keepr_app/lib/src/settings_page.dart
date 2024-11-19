@@ -13,6 +13,9 @@ class _SettingsPageState extends State<SettingsPage> {
       TextEditingController(); // Controller to manage the TextField
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isMetric = globals.isMetric;
+
+
   String getGlobalName() {
     return globals.firstName;
   }
@@ -25,6 +28,15 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
+
+  void _toggleMetricPreference(bool value) { 
+    setState(() { 
+      _isMetric = value; 
+      globals.isMetric = value; 
+    }); 
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +48,13 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
-            Padding(
-                padding: const EdgeInsets.only(left: 100),
-                // User Profile Picture
-                child: Image.asset("assets/images/3.0x/flutter_logo.png")),
-            const SizedBox(height: 20),
+          Center( // CHANGED: Use Center widget directly
+            child: Image.asset(
+              "assets/images/beekeepr_logo.png",
+              scale: 6,
+            ),
+          ),
+            const SizedBox(height: 15),
             //
             Container(
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
@@ -125,8 +139,22 @@ class _SettingsPageState extends State<SettingsPage> {
                       fillColor: Colors.white,
                       filled: true),
                 )),
-            const SizedBox(height: 10),
-            const SizedBox(height: 20),
+            const SizedBox(height: 9),
+            const SizedBox(height: 18),
+            Row( // ADDED
+              mainAxisAlignment: MainAxisAlignment.center, // ADDED
+              children: [ // ADDED
+                const Text( // ADDED
+                  "Use Metric System", // ADDED
+                  style: TextStyle(fontSize: 16), // ADDED
+                ), // ADDED
+                Switch( // ADDED
+                  value: _isMetric, // ADDED
+                  onChanged: _toggleMetricPreference, // ADDED
+                  activeColor: Colors.green, // ADDED
+                ), // ADDED
+              ], // ADDED
+            ),
             // Save Changes Button
             ElevatedButton(
               onPressed: _getUserInput,

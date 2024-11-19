@@ -11,6 +11,14 @@ class _LearnPageState extends State<LearnPage> {
   List<bool> showLesson = [false, false, false];
   String articleTitle = "Overview";
 
+  //saving the completion/non completion-- coded here for now since no database yet
+   List<bool> lessonCompletion = [false, false, false, false]; // lessons
+  List<List<bool>> subLessonCompletion = [ // sub-lessons
+    [false, false], 
+    [false, false], 
+    [false, false], 
+  ];
+
   void updateTitle(String newTitle) {
     setState(() {
       articleTitle = newTitle;
@@ -33,7 +41,7 @@ class _LearnPageState extends State<LearnPage> {
         children: [
           // Vertical menu bar on the left
           Container(
-            width: 125,
+            width: 200,
             color: const Color(0xFFE9AB17),
             child: Column(
               children: [
@@ -42,6 +50,13 @@ class _LearnPageState extends State<LearnPage> {
                   onTap: () {
                     updateTitle('Overview');
                   },
+                  isCompleted: lessonCompletion[0], // Default value
+                  // onCompletionChanged: (_) {},
+                  onCompletionChanged: (value) { 
+                        setState(() {
+                          lessonCompletion[0] = value;
+                        });
+                      },
                 ),
                 ExpandableMenuItem(
                   title: 'Lesson 1',
@@ -52,16 +67,38 @@ class _LearnPageState extends State<LearnPage> {
                       showLesson[0] = !showLesson[0];
                     });
                   },
+                   isCompleted: lessonCompletion[1], // Default value
+                  // onCompletionChanged: (_) {},
+                  onCompletionChanged: (value) { 
+                        setState(() {
+                          lessonCompletion[1] = value;
+                        });
+                      },
                   submenu: [
                     MenuItem(
-                        title: 'Lesson 1.1',
-                        onTap: () => updateTitle('Lesson 1.1')),
+                      title: 'Lesson 1.1',
+                      isCompleted: subLessonCompletion[0][0], 
+                      onCompletionChanged: (value) { 
+                        setState(() {
+                          subLessonCompletion[0][0] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 1.1'),
+                    ),
                     MenuItem(
-                        title: 'Lesson 1.2',
-                        onTap: () => updateTitle('Lesson 1.2')),
+                      title: 'Lesson 1.2',
+                      isCompleted: subLessonCompletion[0][1],
+                      onCompletionChanged: (value) {
+                        setState(() {
+                          subLessonCompletion[0][1] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 1.2'),
+                    ),
                   ],
                 ),
-                ExpandableMenuItem(
+
+                 ExpandableMenuItem(
                   title: 'Lesson 2',
                   isExpanded: showLesson[1],
                   onTap: () {
@@ -70,31 +107,74 @@ class _LearnPageState extends State<LearnPage> {
                       showLesson[1] = !showLesson[1];
                     });
                   },
+                   isCompleted: lessonCompletion[2], // Default value
+                  // onCompletionChanged: (_) {},
+                  onCompletionChanged: (value) { 
+                        setState(() {
+                          lessonCompletion[2] = value;
+                        });
+                      },
                   submenu: [
                     MenuItem(
-                        title: 'Lesson 2.1',
-                        onTap: () => updateTitle('Lesson 2.1')),
+                      title: 'Lesson 2.1',
+                      isCompleted: subLessonCompletion[1][0], 
+                      onCompletionChanged: (value) { 
+                        setState(() {
+                          subLessonCompletion[1][0] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 2.1'),
+                    ),
                     MenuItem(
-                        title: 'Lesson 2.2',
-                        onTap: () => updateTitle('Lesson 2.2')),
+                      title: 'Lesson 2.2',
+                      isCompleted: subLessonCompletion[1][1],
+                      onCompletionChanged: (value) {
+                        setState(() {
+                          subLessonCompletion[1][1] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 2.2'),
+                    ),
                   ],
                 ),
-                ExpandableMenuItem(
+
+                 ExpandableMenuItem(
                   title: 'Lesson 3',
                   isExpanded: showLesson[2],
                   onTap: () {
-                    updateTitle('Lesson 3');
+                    updateTitle('Lesson 1');
                     setState(() {
                       showLesson[2] = !showLesson[2];
                     });
                   },
+                   isCompleted: lessonCompletion[3], // Default value
+                  // onCompletionChanged: (_) {},
+                  onCompletionChanged: (value) { 
+                        setState(() {
+                          lessonCompletion[3] = value;
+                        });
+                      },
                   submenu: [
                     MenuItem(
-                        title: 'Lesson 3.1',
-                        onTap: () => updateTitle('Lesson 3.1')),
+                      title: 'Lesson 3.1',
+                      isCompleted: subLessonCompletion[2][0], 
+                      onCompletionChanged: (value) { 
+                        setState(() {
+                          subLessonCompletion[2][0] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 3.1'),
+                    ),
                     MenuItem(
-                        title: 'Lesson 3.2',
-                        onTap: () => updateTitle('Lesson 3.2')),
+                      title: 'Lesson 3.2',
+                      isCompleted: subLessonCompletion[2][1],
+                      onCompletionChanged: (value) {
+                        setState(() {
+                          subLessonCompletion[2][1] = value;
+                        });
+                      },
+                      onTap: () => updateTitle('Lesson 3.2'),
+                    ),
                   ],
                 ),
               ],
@@ -192,40 +272,79 @@ class ArticleWidget extends StatelessWidget {
 class MenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final bool isCompleted; 
+  final ValueChanged<bool> onCompletionChanged;
 
-  MenuItem({required this.title, required this.onTap});
+    MenuItem({
+    required this.title,
+    required this.onTap,
+    this.isCompleted = false, 
+    required this.onCompletionChanged,
+     }); // ADDED
+
+
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onTap,
-      child: Text(
-        title,
-        style: TextStyle(color: Colors.white),
-      ),
+    return Row(//added checkbox for completion
+      children: [
+        Checkbox(
+          value: isCompleted,
+          onChanged: (value) {
+            if (value != null) {
+              onCompletionChanged(value);
+            }
+          },
+          activeColor: Colors.green,
+        ),
+        Expanded(
+          child: TextButton(
+            onPressed: onTap,
+            child: Text(
+              title,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
+
 
 class ExpandableMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final bool isExpanded;
   final List<MenuItem> submenu;
+  final bool isCompleted; 
+  final ValueChanged<bool> onCompletionChanged;
 
   ExpandableMenuItem({
     required this.title,
     required this.onTap,
     required this.isExpanded,
     required this.submenu,
+    this.isCompleted = false, 
+    required this.onCompletionChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        
         Row( 
           children: [
+            Checkbox(
+              value: isCompleted,
+              onChanged: (value) {
+                if (value != null) {
+                  onCompletionChanged(value);
+                }
+              },
+              activeColor: Colors.green,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 19.7),
               child: TextButton(
