@@ -12,11 +12,12 @@ class _LearnPageState extends State<LearnPage> {
   String articleTitle = "Overview";
 
   //saving the completion/non completion-- coded here for now since no database yet
-   List<bool> lessonCompletion = [false, false, false, false]; // lessons
-  List<List<bool>> subLessonCompletion = [ // sub-lessons
-    [false, false], 
-    [false, false], 
-    [false, false], 
+  List<bool> lessonCompletion = [false, false, false, false]; // lessons
+  List<List<bool>> subLessonCompletion = [
+    // sub-lessons
+    [false, false],
+    [false, false],
+    [false, false],
   ];
 
   void updateTitle(String newTitle) {
@@ -52,11 +53,11 @@ class _LearnPageState extends State<LearnPage> {
                   },
                   isCompleted: lessonCompletion[0], // Default value
                   // onCompletionChanged: (_) {},
-                  onCompletionChanged: (value) { 
-                        setState(() {
-                          lessonCompletion[0] = value;
-                        });
-                      },
+                  onCompletionChanged: (value) {
+                    setState(() {
+                      lessonCompletion[0] = value;
+                    });
+                  },
                 ),
                 ExpandableMenuItem(
                   title: 'Lesson 1',
@@ -67,18 +68,18 @@ class _LearnPageState extends State<LearnPage> {
                       showLesson[0] = !showLesson[0];
                     });
                   },
-                   isCompleted: lessonCompletion[1], // Default value
+                  isCompleted: lessonCompletion[1], // Default value
                   // onCompletionChanged: (_) {},
-                  onCompletionChanged: (value) { 
-                        setState(() {
-                          lessonCompletion[1] = value;
-                        });
-                      },
+                  onCompletionChanged: (value) {
+                    setState(() {
+                      lessonCompletion[1] = value;
+                    });
+                  },
                   submenu: [
                     MenuItem(
                       title: 'Lesson 1.1',
-                      isCompleted: subLessonCompletion[0][0], 
-                      onCompletionChanged: (value) { 
+                      isCompleted: subLessonCompletion[0][0],
+                      onCompletionChanged: (value) {
                         setState(() {
                           subLessonCompletion[0][0] = value;
                         });
@@ -97,8 +98,7 @@ class _LearnPageState extends State<LearnPage> {
                     ),
                   ],
                 ),
-
-                 ExpandableMenuItem(
+                ExpandableMenuItem(
                   title: 'Lesson 2',
                   isExpanded: showLesson[1],
                   onTap: () {
@@ -107,18 +107,18 @@ class _LearnPageState extends State<LearnPage> {
                       showLesson[1] = !showLesson[1];
                     });
                   },
-                   isCompleted: lessonCompletion[2], // Default value
+                  isCompleted: lessonCompletion[2], // Default value
                   // onCompletionChanged: (_) {},
-                  onCompletionChanged: (value) { 
-                        setState(() {
-                          lessonCompletion[2] = value;
-                        });
-                      },
+                  onCompletionChanged: (value) {
+                    setState(() {
+                      lessonCompletion[2] = value;
+                    });
+                  },
                   submenu: [
                     MenuItem(
                       title: 'Lesson 2.1',
-                      isCompleted: subLessonCompletion[1][0], 
-                      onCompletionChanged: (value) { 
+                      isCompleted: subLessonCompletion[1][0],
+                      onCompletionChanged: (value) {
                         setState(() {
                           subLessonCompletion[1][0] = value;
                         });
@@ -137,8 +137,7 @@ class _LearnPageState extends State<LearnPage> {
                     ),
                   ],
                 ),
-
-                 ExpandableMenuItem(
+                ExpandableMenuItem(
                   title: 'Lesson 3',
                   isExpanded: showLesson[2],
                   onTap: () {
@@ -147,18 +146,18 @@ class _LearnPageState extends State<LearnPage> {
                       showLesson[2] = !showLesson[2];
                     });
                   },
-                   isCompleted: lessonCompletion[3], // Default value
+                  isCompleted: lessonCompletion[3], // Default value
                   // onCompletionChanged: (_) {},
-                  onCompletionChanged: (value) { 
-                        setState(() {
-                          lessonCompletion[3] = value;
-                        });
-                      },
+                  onCompletionChanged: (value) {
+                    setState(() {
+                      lessonCompletion[3] = value;
+                    });
+                  },
                   submenu: [
                     MenuItem(
                       title: 'Lesson 3.1',
-                      isCompleted: subLessonCompletion[2][0], 
-                      onCompletionChanged: (value) { 
+                      isCompleted: subLessonCompletion[2][0],
+                      onCompletionChanged: (value) {
                         setState(() {
                           subLessonCompletion[2][0] = value;
                         });
@@ -272,21 +271,20 @@ class ArticleWidget extends StatelessWidget {
 class MenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final bool isCompleted; 
+  final bool isCompleted;
   final ValueChanged<bool> onCompletionChanged;
 
-    MenuItem({
+  MenuItem({
     required this.title,
     required this.onTap,
-    this.isCompleted = false, 
+    this.isCompleted = false,
     required this.onCompletionChanged,
-     }); // ADDED
-
-
+  }); // ADDED
 
   @override
   Widget build(BuildContext context) {
-    return Row(//added checkbox for completion
+    return Row(
+      //added checkbox for completion
       children: [
         Checkbox(
           value: isCompleted,
@@ -311,13 +309,12 @@ class MenuItem extends StatelessWidget {
   }
 }
 
-
 class ExpandableMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final bool isExpanded;
   final List<MenuItem> submenu;
-  final bool isCompleted; 
+  final bool isCompleted;
   final ValueChanged<bool> onCompletionChanged;
 
   ExpandableMenuItem({
@@ -325,7 +322,7 @@ class ExpandableMenuItem extends StatelessWidget {
     required this.onTap,
     required this.isExpanded,
     required this.submenu,
-    this.isCompleted = false, 
+    this.isCompleted = false,
     required this.onCompletionChanged,
   });
 
@@ -333,8 +330,7 @@ class ExpandableMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        
-        Row( 
+        Row(
           children: [
             Checkbox(
               value: isCompleted,
@@ -357,10 +353,8 @@ class ExpandableMenuItem extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
-                      isExpanded
-                          ? Icons.arrow_drop_up 
-                          : Icons.arrow_drop_down, 
-                      color: Colors.white, 
+                      isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                      color: Colors.white,
                     ),
                   ],
                 ),
@@ -368,11 +362,11 @@ class ExpandableMenuItem extends StatelessWidget {
             ),
           ],
         ),
-        if (isExpanded) 
+        if (isExpanded)
           Column(
             children: submenu
                 .map((item) => Padding(
-                      padding: const EdgeInsets.only(left: 40.0), 
+                      padding: const EdgeInsets.only(left: 40.0),
                       child: item,
                     ))
                 .toList(),

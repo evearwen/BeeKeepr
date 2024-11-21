@@ -16,7 +16,6 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isMetric = globals.isMetric;
 
-
   String getGlobalName() {
     return globals.firstName;
   }
@@ -39,14 +38,12 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
-
-  void _toggleMetricPreference(bool value) { 
-    setState(() { 
-      _isMetric = value; 
-      globals.isMetric = value; 
-    }); 
+  void _toggleMetricPreference(bool value) {
+    setState(() {
+      _isMetric = value;
+      globals.isMetric = value;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +56,13 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
-          Center( // CHANGED: Use Center widget directly
-            child: Image.asset(
-              "assets/images/beekeepr_logo.png",
-              scale: 6,
+            Center(
+              // CHANGED: Use Center widget directly
+              child: Image.asset(
+                "assets/images/beekeepr_logo.png",
+                scale: 6,
+              ),
             ),
-          ),
             const SizedBox(height: 15),
             //
             Container(
@@ -165,14 +163,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 )),
             const SizedBox(height: 9),
             const SizedBox(height: 18),
-            Row( // ADDED
+            Row(
+              // ADDED
               mainAxisAlignment: MainAxisAlignment.center, // ADDED
-              children: [ // ADDED
-                const Text( // ADDED
+              children: [
+                // ADDED
+                const Text(
+                  // ADDED
                   "Use Metric System", // ADDED
                   style: TextStyle(fontSize: 16), // ADDED
                 ), // ADDED
-                Switch( // ADDED
+                Switch(
+                  // ADDED
                   value: _isMetric, // ADDED
                   onChanged: _toggleMetricPreference, // ADDED
                   activeColor: Colors.green, // ADDED

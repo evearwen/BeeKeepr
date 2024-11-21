@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:bee_keepr_app/src/json_reader.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
-
-  Future<String> loadDescriptionText() async {
-    return await rootBundle.loadString('text/app_description.txt');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +20,11 @@ class AboutPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           // child: Text("App Description Goes Here"),
           child: FutureBuilder(
-              future: loadDescriptionText(),
+              future: loadPageText("AboutPage"),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Text(
-                    snapshot.data ?? "",
+                    snapshot.data!["AppInfo"] ?? "Unable to Read String",
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   );
                 } else {

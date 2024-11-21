@@ -1,0 +1,89 @@
+{
+    "AboutPage": {
+        "AppInfo": "Beekeepr is a free open-source software application that can run \non computers and mobile devices. It is designed to give amateur \nand seasoned beekeepers alike a comprehensive tool that combines key \nfeatures such as Hive Management, Notes, and Educational Lessons\nfor all topics related to Bee Husbandry.\n\nSave the Bees, Save the World\n\nAny Questions? The development team can be\ncontacted at \"This_is_a_real_Email@beemail.com\"\n\nDevelopment Team:\n\n  Paul Bruzzi \n   \"Hi! I'm a developer! Here is my Picture\"\n\n  Arwen Costello\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Anthony Fabius\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Russell Kim\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Kaelan Wilburn\n    \"Hi! I'm a developer! Here is my Picture\""
+    },
+    "LessonPage":
+    {
+        "Lesson 1: Introduction to Beekeeping" : {
+            "1.1: What is Beekeeping?" : {
+                
+            },
+            "1.2: Beekeeping in History" : {
+                
+            },
+            "1.3: Why Beekeep?" : {
+                
+            }
+        },
+        "Lesson 2: Bee Biology and Behavior" : {
+            "2.1: Hive Structure" : {
+                
+            },
+            "2.2: Bee Communication" : {
+                
+            },
+            "2.3: Seasonal Behavior" : {
+                
+            }
+        },
+        "Lesson 3: Beekeeping Equipment" : {
+            "3.1: Basic Tools" : {
+            
+            },
+            "3.2: Hive Types" : {
+            
+            }
+        },
+        "Lesson 4: Starting your first Apiary" : {
+            "4.1: Legal Regulations" : {
+            
+            },
+            "4.2: Choosing a Location" : {
+            
+            },
+            "4.3: Buying Barry #1" : {
+            
+            }
+        },
+        "Lesson 5: Hive Management" : {
+            "5.1: Routine Inspections" : {
+            
+            },
+            "5.2: Bee Dinner" : {
+            
+            },
+            "5.3: Managing your Hivespace" : {
+            
+            }
+
+        },
+        "Lesson 6: Disease Management" : {
+            "6.1: Common Diseases" : {
+            
+            },
+            "6.2: Pests & Predators" : {
+            
+            },
+            "6.3: Preventing Beeradication" : {
+            
+            }
+        },
+        "Lesson 7: Sustainable Honey" : {
+            "7.1: When to Harvest" : {
+            
+            },
+            "7.2: How to Extract Honey" : {
+            
+            },
+            "7.3: How to store Honey" : {
+            
+            },
+            "7.4 Other Bee Products" : {
+            
+            }
+        }
+    }
+    
+
+
+}
