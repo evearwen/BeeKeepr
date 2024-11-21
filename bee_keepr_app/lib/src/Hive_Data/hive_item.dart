@@ -13,11 +13,7 @@ class _HiveItemState extends State<HiveItem> {
   // List of entry titles within the hive (initially empty or with sample data)
   final List<String> entryTitles = ['Entry 1', 'Entry 2', 'Entry 3'];
 
-  // void _addNewEntry() {
-  //   setState(() {
-  //     entryTitles.add('Entry ${entryTitles.length + 1}');
-  //   });
-  // }
+
     void _addNewEntry() {
     setState(() {
       final newTitle = 'Entry ${entryTitles.length + 1}';

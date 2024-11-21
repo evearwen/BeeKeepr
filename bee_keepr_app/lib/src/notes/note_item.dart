@@ -5,13 +5,16 @@ class NoteItem extends StatefulWidget {
   final String content;
   final VoidCallback onDelete;
   final ValueChanged<String> onTitleChanged; //adding so that users can edit note titles
+  final bool isNewNote;
 
   const NoteItem(
       {super.key,
       required this.title,
       required this.content,
       required this.onDelete,
-      required this.onTitleChanged});
+      required this.onTitleChanged,
+      this.isNewNote = false,});
+
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -25,10 +28,11 @@ class _NoteItemState extends State<NoteItem> {
   @override
   void initState() {
     super.initState();
-    // _titleController = TextEditingController(text: widget.title);
-    // _contentController = TextEditingController(text: widget.content);
     _titleController = TextEditingController(text: widget.title); 
     _contentController = TextEditingController(text: widget.content); 
+    if (widget.isNewNote) { 
+      _isEditing = true;
+    }
   }
 
   @override
