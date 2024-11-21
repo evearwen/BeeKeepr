@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EntryItem extends StatefulWidget {
   final String title;
@@ -16,6 +17,7 @@ class _EntryItemState extends State<EntryItem> {
   final TextEditingController notesController = TextEditingController();
 
   String selectedWeather = 'Clear'; // Default value for the dropdown
+  String date = DateFormat('MM/dd/yyyy').format(DateTime.now());
 
   Widget _buildTextField(TextEditingController controller, String label,
       {bool isNumber = false, int maxLines = 1}) {
@@ -67,7 +69,10 @@ class _EntryItemState extends State<EntryItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildTextField(entryNameController, 'Entry Name'),
-              _buildTextField(dateController, 'Date'),
+              Text(
+                'Date: $date',
+                style: const TextStyle(fontSize: 24)
+              ),
               Row(
                 children: [
                   Expanded(
