@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../globals.dart' as globals;
 
 class EntryItem extends StatefulWidget {
   final String title;
@@ -14,8 +15,11 @@ class _EntryItemState extends State<EntryItem> {
   final TextEditingController tempController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController notesController = TextEditingController();
+  final TextEditingController tagController = TextEditingController();
 
   String selectedWeather = 'Clear'; // Default value for the dropdown
+  final List<String> tags = globals.tags;
+  final List<String> selectedTags = [];
 
   Widget _buildTextField(TextEditingController controller, String label,
       {bool isNumber = false, int maxLines = 1}) {
@@ -33,6 +37,16 @@ class _EntryItemState extends State<EntryItem> {
         ),
       ),
     );
+  }
+
+  void toggleTag(String tag) {
+    setState(() {
+      if (selectedTags.contains(tag)) {
+        selectedTags.remove(tag);
+      } else {
+        selectedTags.add(tag);
+      }
+    });
   }
 
   @override
@@ -129,6 +143,61 @@ class _EntryItemState extends State<EntryItem> {
                 children: [
                   _StatusToggle(label: 'Honey'),
                   _StatusToggle(label: 'No Stressors'),
+                ],
+              ),
+              const SizedBox(height: 16),
+                            const Text("Tags", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Wrap(
+                spacing: 8.0,
+                children: tags.map<Widget>((tag) {
+                  final isSelected = selectedTags.contains(tag);
+                  return FilterChip(
+                    label: Text(tag),
+                    selected: isSelected,
+                    onSelected: (_) => toggleTag(tag),
+                    selectedColor: Colors.amber,
+                    onDeleted: () {
+                      setState(() {
+                        tags.remove(tag); 
+                      });
+                    },
+                    deleteIcon: const Icon(Icons.close),
+                    deleteIconColor: Colors.red,
+                    backgroundColor: Colors.amber[100],
+                  );
+                }).toList(),
+              ),
+              const SizedBox(height: 16),
+         
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: tagController,
+                      decoration: InputDecoration(
+                        labelText: 'Add a Tag',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      final newTag = tagController.text.trim();
+                      if (newTag.isNotEmpty && !tags.contains(newTag)) {
+                        setState(() {
+                          tags.add(newTag); 
+                        });
+                        tagController.clear(); 
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE9AB17),
+                    ),
+                    child: const Text('Add'),
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
