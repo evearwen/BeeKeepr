@@ -69,10 +69,8 @@ class _EntryItemState extends State<EntryItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildTextField(entryNameController, 'Entry Name'),
-              Text(
-                'Date: $date',
-                style: const TextStyle(fontSize: 24)
-              ),
+              _buildTextField(dateController, date),
+              
               Row(
                 children: [
                   Expanded(
