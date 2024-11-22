@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';  // For File class
 import '../globals.dart' as globals;
 
 class EntryItem extends StatefulWidget {
@@ -206,18 +209,21 @@ class _EntryItemState extends State<EntryItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.camera_alt, size: 50),
-                    onPressed: () {
-                      // Camera action
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.photo, size: 50),
-                    onPressed: () {
-                      // Gallery action
-                    },
-                  ),
+                  // IconButton(
+                  //   icon: const Icon(Icons.camera_alt, size: 50),
+                  //   onPressed: () {
+                  //     // Camera action
+                  //   },
+                  // ),
+                  // IconButton(
+                  //   icon: const Icon(Icons.photo, size: 50),
+                  //   onPressed: () {
+                  //     // Gallery action
+                  //   },
+                  // ),
+                  Expanded(
+                    child: ImagePickerWidget(),
+                  )
                 ],
               ),
             ],
@@ -270,6 +276,70 @@ class _StatusToggleState extends State<_StatusToggle> {
         ),
         const SizedBox(height: 4),
         Text(widget.label),
+      ],
+    );
+  }
+}
+
+class ImagePickerWidget extends StatefulWidget {
+  // You don't need to pass any callback anymore
+  ImagePickerWidget({Key? key}) : super(key: key);
+
+  @override
+  _ImagePickerWidgetState createState() => _ImagePickerWidgetState();
+}
+
+class _ImagePickerWidgetState extends State<ImagePickerWidget> {
+  PlatformFile? _file;  // Store the selected image
+
+  // Function to pick an image file
+  Future<void> _pickImage() async {
+    try {
+      // Allow the user to pick an image file
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,  // Restrict file selection to images
+      );
+
+      if (result != null && result.files.isNotEmpty) {
+        setState(() {
+          _file = result.files.first;  // Store the first selected file
+        });
+      } else {
+        // Handle the case where no file is selected
+        print("No file selected");
+      }
+    } catch (e) {
+      print("Error picking image: $e");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        // Display the selected image, or a message if no image is selected
+        _file == null
+            ? Text('No image selected.')
+            : Column(
+                children: [
+                  // Display the image using its bytes
+                  Image.memory(
+                    _file!.bytes!,  // Use the image bytes to display it
+                    // width: 300,  // Set the width for the image
+                    // height: 300,  // Set the height for the image
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 20),
+                  Text('File name: ${_file!.name}'),  // Show the file name
+                ],
+              ),
+        SizedBox(height: 20),
+        // Button to pick an image from the file picker
+        ElevatedButton(
+          onPressed: _pickImage,
+          child: Text('Pick Image'),
+        ),
+        const SizedBox(height: 60),
       ],
     );
   }
