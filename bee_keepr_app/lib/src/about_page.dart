@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
+import 'dart:convert';
+
+Future<Map<String, String>> getPageInfo(String pageName) async {
+  // load JSON file
+  final data = await rootBundle.loadString('json/texts.json');
+  Map<String, dynamic> jsonData = json.decode(data);
+  // return all values stored under "AboutPage"
+  final pageText = jsonData[pageName];
+  if (pageText != null && pageText is Map<String, dynamic>) {
+    return Map<String, String>.from(pageText);
+  } else {
+    return {};
+  }
+}
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
-
-  Future<String> loadDescriptionText() async {
-    return await rootBundle.loadString('text/app_description.txt');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +34,11 @@ class AboutPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           // child: Text("App Description Goes Here"),
           child: FutureBuilder(
-              future: loadDescriptionText(),
+              future: getPageInfo("about"),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Text(
-                    snapshot.data ?? "",
+                    snapshot.data!["AppInfo"] ?? "Unable to Read String",
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   );
                 } else {

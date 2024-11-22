@@ -13,9 +13,18 @@ class _HiveItemState extends State<HiveItem> {
   // List of entry titles within the hive (initially empty or with sample data)
   final List<String> entryTitles = ['Entry 1', 'Entry 2', 'Entry 3'];
 
-  void _addNewEntry() {
+
+    void _addNewEntry() {
     setState(() {
-      entryTitles.add('Entry ${entryTitles.length + 1}');
+      final newTitle = 'Entry ${entryTitles.length + 1}';
+      entryTitles.add(newTitle); 
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EntryItem(title: newTitle), 
+        ),
+      );
     });
   }
 

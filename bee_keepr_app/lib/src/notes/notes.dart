@@ -33,6 +33,7 @@ class _NotesState extends State<Notes> {
             NoteTitles[NoteTitles.length - 1] = newTitle; 
           });
         },
+         isNewNote: true,
       ),
     ),
   );
