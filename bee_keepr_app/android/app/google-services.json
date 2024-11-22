@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "675305167171",
+    "project_id": "beekeepr-e3734",
+    "storage_bucket": "beekeepr-e3734.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675305167171:android:c20f555dbf82e60ff5b7f6",
+        "android_client_info": {
+          "package_name": "com.beekeepr.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXlCo_z9WC3sVqK8geRl_xyFYDPyd6m9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

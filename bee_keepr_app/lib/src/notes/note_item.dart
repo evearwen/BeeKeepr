@@ -1,15 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class NoteItem extends StatefulWidget {
   final String title;
   final String content;
+  final String noteId;
   final VoidCallback onDelete;
 
   const NoteItem(
       {super.key,
       required this.title,
       required this.content,
-      required this.onDelete});
+      required this.onDelete,
+      required this.noteId});
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -34,7 +37,20 @@ class _NoteItemState extends State<NoteItem> {
     super.dispose();
   }
 
-  void _toggleEditMode() {
+  void _toggleEditMode() async {
+    if (_isEditing) {
+      // Save changes to Firestore
+      await FirebaseFirestore.instance
+          .collection('notes')
+          .doc(widget.noteId)
+          .update({
+        'Title': _titleController.text,
+        'Content': _contentController.text,
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Note updated successfully')),
+      );
+    }
     setState(() {
       _isEditing = !_isEditing;
     });
