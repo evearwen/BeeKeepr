@@ -1,89 +1,181 @@
 {
-    "AboutPage": {
+    "about": {
         "AppInfo": "Beekeepr is a free open-source software application that can run \non computers and mobile devices. It is designed to give amateur \nand seasoned beekeepers alike a comprehensive tool that combines key \nfeatures such as Hive Management, Notes, and Educational Lessons\nfor all topics related to Bee Husbandry.\n\nSave the Bees, Save the World\n\nAny Questions? The development team can be\ncontacted at \"This_is_a_real_Email@beemail.com\"\n\nDevelopment Team:\n\n  Paul Bruzzi \n   \"Hi! I'm a developer! Here is my Picture\"\n\n  Arwen Costello\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Anthony Fabius\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Russell Kim\n    \"Hi! I'm a developer! Here is my Picture\"\n\n  Kaelan Wilburn\n    \"Hi! I'm a developer! Here is my Picture\""
     },
-    "LessonPage":
-    {
-        "Lesson 1: Introduction to Beekeeping" : {
-            "1.1: What is Beekeeping?" : {
-                
+    "lessons": [
+        {
+        "lessonNumber": 1,
+        "title": "Lesson 1: Introduction to Beekeeping",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "1.1", 
+            "title": "What is Beekeeping?", 
+            "completed": false,
+            "content": "An introduction into the world of Beekepeing" 
             },
-            "1.2: Beekeeping in History" : {
-                
+            { 
+            "subsectionNumber": "1.2", 
+            "title": "Beekeeping in History", 
+            "completed": false,
+            "content": "This is the 1.2 subsection" 
             },
-            "1.3: Why Beekeep?" : {
-                
+            { 
+            "subsectionNumber": "1.3", 
+            "title": "Why Beekeep?", 
+            "completed": false,
+            "content": "This is the 1.3 subsection" 
             }
+        ]
         },
-        "Lesson 2: Bee Biology and Behavior" : {
-            "2.1: Hive Structure" : {
-                
+        {
+        "lessonNumber": 2,
+        "title": "Lesson 2: Bee Biology and Behavior",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "2.1", 
+            "title": "Hive Structure", 
+            "completed": false,
+            "content": "This is the 2.1 subsection" 
             },
-            "2.2: Bee Communication" : {
-                
+            { 
+            "subsectionNumber": "2.2", 
+            "title": "Bee Communication", 
+            "completed": false,
+            "content": "This is the 2.2 subsection" 
             },
-            "2.3: Seasonal Behavior" : {
-                
+            { 
+            "subsectionNumber": "2.3", 
+            "title": "Seasonal Behavior", 
+            "completed": false,
+            "content": "This is the 2.3 subsection" 
             }
+        ]
         },
-        "Lesson 3: Beekeeping Equipment" : {
-            "3.1: Basic Tools" : {
-            
+        {
+        "lessonNumber": 3,
+        "title": "Lesson 3: Beekeeping Equipment",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "3.1", 
+            "title": "Basic Tools", 
+            "completed": false,
+            "content": "This is the 3.1 subsection" 
             },
-            "3.2: Hive Types" : {
-            
+            { 
+            "subsectionNumber": "3.2", 
+            "title": "Hive Types", 
+            "completed": false,
+            "content": "This is the 3.2 subsection" 
             }
+        ]
         },
-        "Lesson 4: Starting your first Apiary" : {
-            "4.1: Legal Regulations" : {
-            
+        {
+        "lessonNumber": 4,
+        "title": "Lesson 4: Starting Your First Apiary",
+        "subsections": [
+            { 
+            "subsectionNumber": "4.1", 
+            "title": "Legal Regulations", 
+            "completed": false,
+            "content": "This is the 4.1 subsection" 
             },
-            "4.2: Choosing a Location" : {
-            
+            { 
+            "subsectionNumber": "4.2", 
+            "title": "Choosing a Location", 
+            "completed": false,
+            "content": "This is the 4.2 subsection" 
             },
-            "4.3: Buying Barry #1" : {
-            
+            { 
+            "subsectionNumber": "4.3", 
+            "title": "Buying Your First Barry", 
+            "completed": false,
+            "content": "This is the 4.3 subsection" 
             }
+        ]
         },
-        "Lesson 5: Hive Management" : {
-            "5.1: Routine Inspections" : {
-            
+        {
+        "lessonNumber": 5,
+        "title": "Lesson 5: Hive Management",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "5.1", 
+            "title": "Routine Inspections", 
+            "completed": false,
+            "content": "This is the 5.1 subsection" 
             },
-            "5.2: Bee Dinner" : {
-            
+            { 
+            "subsectionNumber": "5.2", 
+            "title": "Bee Dinner", 
+            "completed": false,
+            "content": "This is the 5.2 subsection" 
             },
-            "5.3: Managing your Hivespace" : {
-            
+            { 
+            "subsectionNumber": "5.3", 
+            "title": "Managing Your Hivespace",
+            "completed": false, 
+            "content": "This is the 5.3 subsection" 
             }
-
+        ]
         },
-        "Lesson 6: Disease Management" : {
-            "6.1: Common Diseases" : {
-            
+        {
+        "lessonNumber": 6,
+        "title": "Lesson 6: Disease Management",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "6.1", 
+            "title": "Common Diseases", 
+            "completed": false,
+            "content": "This is the 6.1 subsection" 
             },
-            "6.2: Pests & Predators" : {
-            
+            { 
+            "subsectionNumber": "6.2", 
+            "title": "Pests & Predators", 
+            "completed": false,
+            "content": "This is the 6.2 subsection" 
             },
-            "6.3: Preventing Beeradication" : {
-            
+            { 
+            "subsectionNumber": "6.3", 
+            "title": "Preventing Beeradication", 
+            "completed": false,
+            "content": "This is the 6.3 subsection" 
             }
+        ]
         },
-        "Lesson 7: Sustainable Honey" : {
-            "7.1: When to Harvest" : {
-            
+        {
+        "lessonNumber": 7,
+        "title": "Lesson 7: Sustainable Honey",
+        "completed": false,
+        "subsections": [
+            { 
+            "subsectionNumber": "7.1", 
+            "title": "When to Harvest", 
+            "completed": false,
+            "content": "This is the 7.1 subsection" 
             },
-            "7.2: How to Extract Honey" : {
-            
+            { 
+            "subsectionNumber": "7.2", 
+            "title": "How to Extract Honey", 
+            "completed": false,
+            "content": "This is the 7.2 subsection" 
             },
-            "7.3: How to store Honey" : {
-            
+            { 
+            "subsectionNumber": "7.3", 
+            "title": "How to Store Honey", 
+            "completed": false,
+            "content": "This is the 7.3 subsection" 
             },
-            "7.4 Other Bee Products" : {
-            
+            { 
+            "subsectionNumber": "7.4", 
+            "title": "Other Bee Products", 
+            "completed": false,
+            "content": "This is the 7.4 subsection" 
             }
+        ]
         }
-    }
-    
-
-
+    ]
 }
