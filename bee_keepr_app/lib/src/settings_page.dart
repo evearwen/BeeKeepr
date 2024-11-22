@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
+///                       SETTINGS PAGE
+/// +---------------------------------------------------------+
+/// |The Setting Page is responsible for allowing the user to |
+/// |update their profile as well as system of measurement.   |
+/// +---------------------------------------------------------+
+
+// Settings Page is not a static class so it needs its
+// fluctuating state to be defined using another class
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
@@ -8,7 +16,7 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
-// Input Box Controllers
+// Settings Page State is a modifiable Settings Page
 class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -16,13 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isMetric = globals.isMetric;
 
-
-  String getGlobalName() {
-    return globals.firstName;
-  }
-
-  // Save Changes to Personal Information
-  void _getUserInput() {
+  void _saveProfileChanges() {
     setState(() {
       if (_firstNameController.text.isNotEmpty) {
         globals.firstName = _firstNameController.text;
@@ -39,14 +41,12 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
-
   void _toggleMetricPreference(bool value) { 
     setState(() { 
       _isMetric = value; 
       globals.isMetric = value; 
     }); 
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +59,14 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Center(
         child: Column(
           children: [
-          Center( // CHANGED: Use Center widget directly
-            child: Image.asset(
+          Center(
+            child: Image.asset( // Displays Logo
               "assets/images/beekeepr_logo.png",
               scale: 6,
             ),
           ),
             const SizedBox(height: 15),
-            //
-            Container(
+            Container( // Displays current First and Last name
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -83,7 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             const SizedBox(height: 5),
-            Container(
+            Container( // Displays current Username
               padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -104,12 +103,11 @@ class _SettingsPageState extends State<SettingsPage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 15),
-            // First Name Input
             const Text(
               "New First Name",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(
+            SizedBox( // Handles user input for firstname
                 width: 400,
                 child: TextField(
                   controller: _firstNameController,
@@ -119,12 +117,11 @@ class _SettingsPageState extends State<SettingsPage> {
                       filled: true),
                 )),
             const SizedBox(height: 10),
-            // Last Name Input
             const Text(
               "New Last Name",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(
+            SizedBox( // Handles user input for lastname
                 width: 400,
                 child: TextField(
                   controller: _lastNameController,
@@ -134,12 +131,11 @@ class _SettingsPageState extends State<SettingsPage> {
                       filled: true),
                 )),
             const SizedBox(height: 10),
-            // Password Input
             const Text(
               "New Username",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(
+            SizedBox( // Handles user input for username
                 width: 400,
                 child: TextField(
                   controller: _usernameController,
@@ -149,8 +145,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       filled: true),
                 )),
             const SizedBox(height: 10),
-            // Password Input
-            const Text(
+            const Text( // Handles user input for password
               "New Password",
               style: TextStyle(fontSize: 16),
             ),
@@ -165,23 +160,22 @@ class _SettingsPageState extends State<SettingsPage> {
                 )),
             const SizedBox(height: 9),
             const SizedBox(height: 18),
-            Row( // ADDED
-              mainAxisAlignment: MainAxisAlignment.center, // ADDED
-              children: [ // ADDED
-                const Text( // ADDED
-                  "Use Metric System", // ADDED
-                  style: TextStyle(fontSize: 16), // ADDED
-                ), // ADDED
-                Switch( // ADDED
-                  value: _isMetric, // ADDED
-                  onChanged: _toggleMetricPreference, // ADDED
-                  activeColor: Colors.green, // ADDED
-                ), // ADDED
-              ], // ADDED
+            Row( // Measurement system toggle
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Use Metric System",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Switch(
+                  value: _isMetric,
+                  onChanged: _toggleMetricPreference,
+                  activeColor: Colors.green,
+                ),
+              ],
             ),
-            // Save Changes Button
-            ElevatedButton(
-              onPressed: _getUserInput,
+            ElevatedButton( // Save Changes Button
+              onPressed: _saveProfileChanges,
               child: const Text(
                 "Save Changes",
                 style:
