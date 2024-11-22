@@ -4,3 +4,5 @@ String username = "xxXBarryximus_Honeycimus_GatheridiusXxx";
 String password = "KillaBee123";
 String firstName = "Barry Billington";
 String lastName = "Bee";
+bool isMetric = false;
+List<String> tags  = ['health', 'queen', 'honey'];

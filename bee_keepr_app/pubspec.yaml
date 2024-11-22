@@ -21,9 +21,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  image_picker: ^1.1.2
+  file_picker: ^5.0.0
   flutter_lints: ^4.0.0
-
 flutter:
   uses-material-design: true
 
@@ -33,4 +33,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
-    - assets/text/
+    - assets/json/
