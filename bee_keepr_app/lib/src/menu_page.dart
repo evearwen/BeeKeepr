@@ -7,11 +7,11 @@ import 'package:bee_keepr_app/src/Hive_Data/Hives.dart';
 import 'package:flutter/material.dart';
 
 ///                         MENU PAGE
-/// +---------------------------------------------------------+
-/// |The Menu Page is the main page of the application which  | 
-/// |includes hexagonal menu buttons. This page has naviation |
-/// |to every other page in the application.                  |
-/// +---------------------------------------------------------+
+/// +----------------------------------------------------------+
+/// |The Menu Page is the main page of the application which   |
+/// |includes hexagonal menu buttons. This page has navigation |
+/// |to every other page in the application.                   |
+/// +----------------------------------------------------------+
 
 // Main class for Menu Page
 class MenuPage extends StatelessWidget {
@@ -49,26 +49,26 @@ class MenuPage extends StatelessWidget {
                     )),
                 Positioned(
                   top: hiveOffsetTop,
-                  child: Column( // Column for Hexagonal Buttons
+                  child: Column(// Column for Hexagonal Buttons
                       // Hexgrid Column 1
                       children: [
-                        const SizedBox(height: 150),
-                        HexagonalButton(
-                            onPressed: () {
-                              // Forum Navigation
-                            },
-                            label: "Forum"),
-                        SizedBox(height: hexSpace),
-                        HexagonalButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LearnPage()),
-                              );
-                            },
-                            label: "Learn"),
-                      ]),
+                    const SizedBox(height: 150),
+                    HexagonalButton(
+                        onPressed: () {
+                          // Forum Navigation
+                        },
+                        label: "Forum"),
+                    SizedBox(height: hexSpace),
+                    HexagonalButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LearnPage()),
+                          );
+                        },
+                        label: "Learn"),
+                  ]),
                 ),
                 SizedBox(width: hexSpace),
                 Positioned(
@@ -79,17 +79,19 @@ class MenuPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 80),
                       HexagonalButton(
-                          onPressed: () { // Return to Login Page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()),
-                              );
+                          onPressed: () {
+                            // Return to Login Page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
                           },
                           label: "Exit"),
                       SizedBox(height: hexSpace),
                       HexagonalButton(
-                          onPressed: () { // Navigate to Hive Data Page
+                          onPressed: () {
+                            // Navigate to Hive Data Page
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -99,7 +101,8 @@ class MenuPage extends StatelessWidget {
                           label: "Hives"),
                       SizedBox(height: hexSpace),
                       HexagonalButton(
-                          onPressed: () { // Navigate to Settings Page
+                          onPressed: () {
+                            // Navigate to Settings Page
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -119,17 +122,18 @@ class MenuPage extends StatelessWidget {
                       children: [
                         const SizedBox(height: 150),
                         HexagonalButton(
-                            onPressed: () { // Navigate to Notes Page
+                            onPressed: () {
+                              // Navigate to Notes Page
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const Notes()));
+                                      builder: (context) => const Notes()));
                             },
                             label: "Notes"),
                         SizedBox(height: hexSpace),
                         HexagonalButton(
-                            onPressed: () { // Navigate to About Page
+                            onPressed: () {
+                              // Navigate to About Page
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -181,7 +185,8 @@ class HexagonalButton extends StatelessWidget {
       onTap: onPressed, // Make the button tappable
       child: ClipPath(
         clipper: HexagonClipper(), // Apply the custom hexagon shape
-        child: Container( // Settings for the hexagonal button
+        child: Container(
+          // Settings for the hexagonal button
           width: 140,
           height: 120,
           color: Colors.white,

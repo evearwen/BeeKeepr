@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'dart:io';  // For File class
+import 'dart:io'; // For File class
 import '../globals.dart' as globals;
+
+///                       Entry Item
+/// +--------------------------------------------------------------+
+/// | This is the page for entry items. It contains all            |
+/// | information pertaining to an entry created by a user and     |
+/// | displays it. The user can also edit the entry to alter the   |
+/// | data and save it.                                            |
+/// +--------------------------------------------------------------+
 
 class EntryItem extends StatefulWidget {
   final String title;
@@ -149,8 +157,9 @@ class _EntryItemState extends State<EntryItem> {
                 ],
               ),
               const SizedBox(height: 16),
-                            const Text("Tags", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Wrap(
+              const Text("Tags",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Wrap(
                 spacing: 8.0,
                 children: tags.map<Widget>((tag) {
                   final isSelected = selectedTags.contains(tag);
@@ -161,7 +170,7 @@ class _EntryItemState extends State<EntryItem> {
                     selectedColor: Colors.amber,
                     onDeleted: () {
                       setState(() {
-                        tags.remove(tag); 
+                        tags.remove(tag);
                       });
                     },
                     deleteIcon: const Icon(Icons.close),
@@ -171,7 +180,6 @@ class _EntryItemState extends State<EntryItem> {
                 }).toList(),
               ),
               const SizedBox(height: 16),
-         
               Row(
                 children: [
                   Expanded(
@@ -191,9 +199,9 @@ class _EntryItemState extends State<EntryItem> {
                       final newTag = tagController.text.trim();
                       if (newTag.isNotEmpty && !tags.contains(newTag)) {
                         setState(() {
-                          tags.add(newTag); 
+                          tags.add(newTag);
                         });
-                        tagController.clear(); 
+                        tagController.clear();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -290,19 +298,19 @@ class ImagePickerWidget extends StatefulWidget {
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-  PlatformFile? _file;  // Store the selected image
+  PlatformFile? _file; // Store the selected image
 
   // Function to pick an image file
   Future<void> _pickImage() async {
     try {
       // Allow the user to pick an image file
       FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.image,  // Restrict file selection to images
+        type: FileType.image, // Restrict file selection to images
       );
 
       if (result != null && result.files.isNotEmpty) {
         setState(() {
-          _file = result.files.first;  // Store the first selected file
+          _file = result.files.first; // Store the first selected file
         });
       } else {
         // Handle the case where no file is selected
@@ -324,13 +332,13 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                 children: [
                   // Display the image using its bytes
                   Image.memory(
-                    _file!.bytes!,  // Use the image bytes to display it
+                    _file!.bytes!, // Use the image bytes to display it
                     // width: 300,  // Set the width for the image
                     // height: 300,  // Set the height for the image
                     fit: BoxFit.cover,
                   ),
                   SizedBox(height: 20),
-                  Text('File name: ${_file!.name}'),  // Show the file name
+                  Text('File name: ${_file!.name}'), // Show the file name
                 ],
               ),
         SizedBox(height: 20),

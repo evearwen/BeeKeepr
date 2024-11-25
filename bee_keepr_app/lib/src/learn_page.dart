@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 
+///                           Learn Page
+/// +--------------------------------------------------------------+
+/// | The Learn page is the tab for the learn feature. It          |
+/// | contains all information needed to display the lesson        |
+/// | plans. Checkboxes are used to allow users to keep track of   |
+/// | lessons they have already completed. The lessons themselves  |
+/// | are stored in plain text in a global file.                   |
+/// +--------------------------------------------------------------+
+
 class LearnPage extends StatefulWidget {
   const LearnPage({super.key});
 

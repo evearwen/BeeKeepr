@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
 
+///                         Login Page
+/// +--------------------------------------------------------------+
+/// | The Login Page is the thing first thing a user sees when     |
+/// | the open the application. The user passes in some            |
+/// | credentials for user authentication via Google Auth to sign  |
+/// | in to the application. This after authentication is          |
+/// | complete the user is brought to the Menu page.               |
+/// +--------------------------------------------------------------+
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 

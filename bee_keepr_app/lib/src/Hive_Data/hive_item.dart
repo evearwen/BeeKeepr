@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/hive_data/entry_item.dart';
 
+///                       Hives Item
+/// +--------------------------------------------------------------+
+/// | This is the page for the hive items. It contains all         |
+/// | information pertaining to each individual hive created by a  |
+/// | user. It queries the database based off any filters or       |
+/// | searches to populate a list of all related entries. If no    |
+/// | queries are supplied it retrieves all entries created by a   |
+/// | user for the hive and lists them. You can also create,       |
+/// | edit, and delete entries which are stored as entry items.    |
+/// +--------------------------------------------------------------+
+
 class HiveItem extends StatefulWidget {
   final String title;
   const HiveItem({super.key, required this.title});
@@ -13,16 +24,15 @@ class _HiveItemState extends State<HiveItem> {
   // List of entry titles within the hive (initially empty or with sample data)
   final List<String> entryTitles = ['Entry 1', 'Entry 2', 'Entry 3'];
 
-
-    void _addNewEntry() {
+  void _addNewEntry() {
     setState(() {
       final newTitle = 'Entry ${entryTitles.length + 1}';
-      entryTitles.add(newTitle); 
+      entryTitles.add(newTitle);
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => EntryItem(title: newTitle), 
+          builder: (context) => EntryItem(title: newTitle),
         ),
       );
     });

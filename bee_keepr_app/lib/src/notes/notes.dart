@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'note_item.dart';
 
+///                         Notes
+/// +--------------------------------------------------------------+
+/// | This is the main page for the notes feature. It queries the  |
+/// | database based off any filters or searches to populate a     |
+/// | list of all related notes. If no queries are supplied it     |
+/// | retrieves all notes created by a user and lists them.        |
+/// +--------------------------------------------------------------+
+
 class Notes extends StatefulWidget {
   const Notes({super.key});
 
@@ -12,38 +20,37 @@ class _NotesState extends State<Notes> {
   final List<String> NoteTitles = ['Note 1', 'Note 2', 'Note 3', 'Note 4'];
 
   void _addNewNote() {
-  setState(() {
-    NoteTitles.add('Note ${NoteTitles.length + 1}');
-  });
+    setState(() {
+      NoteTitles.add('Note ${NoteTitles.length + 1}');
+    });
 
-  //edited so that users will be sent to the note page when creating a new note instead of staying in the note menu
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => NoteItem(
-        title: 'Note ${NoteTitles.length}', 
-        content: '', 
-        onDelete: () {
-          setState(() {
-            NoteTitles.removeAt(NoteTitles.length - 1);
-          });
-        },
-        onTitleChanged: (newTitle) {  
-          setState(() {
-            NoteTitles[NoteTitles.length - 1] = newTitle; 
-          });
-        },
-         isNewNote: true,
+    //edited so that users will be sent to the note page when creating a new note instead of staying in the note menu
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NoteItem(
+          title: 'Note ${NoteTitles.length}',
+          content: '',
+          onDelete: () {
+            setState(() {
+              NoteTitles.removeAt(NoteTitles.length - 1);
+            });
+          },
+          onTitleChanged: (newTitle) {
+            setState(() {
+              NoteTitles[NoteTitles.length - 1] = newTitle;
+            });
+          },
+          isNewNote: true,
+        ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 
   //functionality to update note names
-   void _updateNoteTitle(int index, String newTitle) { 
+  void _updateNoteTitle(int index, String newTitle) {
     setState(() {
-      NoteTitles[index] = newTitle; 
+      NoteTitles[index] = newTitle;
     });
   }
 
@@ -73,15 +80,16 @@ class _NotesState extends State<Notes> {
             final title = NoteTitles[index];
             return Dismissible(
               key: Key(title),
-              direction: DismissDirection.horizontal, //left and right functionality
+              direction:
+                  DismissDirection.horizontal, //left and right functionality
               background: Container(
-                color: Colors.blue, 
+                color: Colors.blue,
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const Icon(Icons.edit, color: Colors.white), 
+                child: const Icon(Icons.edit, color: Colors.white),
               ),
               secondaryBackground: Container(
-                color: Colors.red, 
+                color: Colors.red,
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: const Icon(Icons.delete, color: Colors.white),
@@ -92,7 +100,6 @@ class _NotesState extends State<Notes> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('$title deleted')),
                   );
-                
                 } else if (direction == DismissDirection.startToEnd) {
                   Navigator.push(
                     context,
@@ -101,7 +108,8 @@ class _NotesState extends State<Notes> {
                         title: title,
                         content: '',
                         onDelete: () => _deleteNoteAt(index),
-                        onTitleChanged: (newTitle) => _updateNoteTitle(index, newTitle),
+                        onTitleChanged: (newTitle) =>
+                            _updateNoteTitle(index, newTitle),
                       ),
                     ),
                   );
@@ -118,7 +126,8 @@ class _NotesState extends State<Notes> {
                         title: title,
                         content: '',
                         onDelete: () => _deleteNoteAt(index),
-                        onTitleChanged: (newTitle) => _updateNoteTitle(index, newTitle),
+                        onTitleChanged: (newTitle) =>
+                            _updateNoteTitle(index, newTitle),
                       ),
                     ),
                   );
