@@ -2,6 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'note_item.dart';
 
+///                         Notes
+/// +--------------------------------------------------------------+
+/// | This is the main page for the notes feature. It queries the  |
+/// | database based off any filters or searches to populate a     |
+/// | list of all related notes. If no queries are supplied it     |
+/// | retrieves all notes created by a user and lists them.        |
+/// +--------------------------------------------------------------+
+
 class Notes extends StatefulWidget {
   const Notes({super.key});
 

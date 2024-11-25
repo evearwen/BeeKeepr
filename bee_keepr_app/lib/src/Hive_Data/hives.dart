@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_item.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_edit.dart';
 
+///                         Hives
+/// +--------------------------------------------------------------+
+/// | This is the main page for the Hives feature. It displays     |
+/// | all of a Users hives. From this page a user can create new   |
+/// | hives, delete hives, edit hives, and view their entries.     |
+/// +--------------------------------------------------------------+
+
 class Hives extends StatefulWidget {
   const Hives({super.key});
 
