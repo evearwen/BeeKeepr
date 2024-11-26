@@ -12,7 +12,7 @@ BeeKeepr aims to:
 
 - Educate prospective and experienced beekeepers.
 - Assist in hive management and health tracking.
-- Provide a social space for the beekeeping community to interact and share knowledge.
+- Allow organization of detailed notes relating to hives.
 
 ---
 
