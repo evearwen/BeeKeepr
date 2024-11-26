@@ -6,174 +6,187 @@
         {
         "lessonNumber": 1,
         "title": "Lesson 1: Introduction to Beekeeping",
+        "content": "A introduction into basic beekeeping concepts",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "1.1", 
-            "title": "What is Beekeeping?", 
+            "title": "1.1: What is Beekeeping?", 
             "completed": false,
-            "content": "An introduction into the world of Beekepeing" 
+            "content": "Beekeeping, or apiculture, is the art and science of managing honeybee colonies for the benefit of both bees and humans. This practice dates back thousands of years and remains an essential part of modern agriculture and biodiversity. Beekeepers create environments where honeybees can thrive, allowing these incredible insects to fulfill their natural role as pollinators while producing valuable resources like honey, beeswax, and propolis.\n\nThe importance of beekeeping extends far beyond the products bees create. Honeybees play a critical role in pollinating crops, ensuring food security for humans and animals. Without them, many fruits, vegetables, and nuts would struggle to grow. This sublesson introduces you to the world of beekeeping, offering insights into its history, benefits, and the role of beekeepers in supporting healthy ecosystems."
             },
             { 
             "subsectionNumber": "1.2", 
-            "title": "Beekeeping in History", 
+            "title": "1.2: Beekeeping in History", 
             "completed": false,
-            "content": "This is the 1.2 subsection" 
+            "content": "The history of beekeeping is as old as human civilization itself. Ancient records show that humans have been harvesting honey for over 9,000 years. Early depictions of honey collection can be found in cave paintings, such as those in Spain’s Cuevas de la Araña, where humans are shown gathering honey from wild hives. Beekeeping practices evolved as ancient societies began domesticating bees, with early evidence of managed hives discovered in ancient Egypt, where honey was prized as both a sweetener and a sacred offering to the gods. \n\nThroughout history, beekeeping has been shaped by cultural and technological advancements. The Greeks and Romans developed more sophisticated hives and tools, while in the Middle Ages, monasteries became centers of beekeeping knowledge, producing honey and beeswax for use in food, medicine, and candles. The modern era of beekeeping began in the 19th century with the invention of the movable-frame hive by L.L. Langstroth, revolutionizing the way beekeepers could manage colonies. This sublesson explores the fascinating journey of beekeeping through time, highlighting the ingenuity and significance of this practice across cultures and epochs." 
             },
             { 
             "subsectionNumber": "1.3", 
-            "title": "Why Beekeep?", 
+            "title": "1.3: Why Beekeep?", 
             "completed": false,
-            "content": "This is the 1.3 subsection" 
+            "content": "Beekeeping offers a unique combination of benefits for individuals, communities, and the environment. For many, it begins as a rewarding hobby, providing an opportunity to connect with nature and learn about the intricate behaviors of honeybees. The products harvested from hives, such as honey, beeswax, and propolis, are not only valuable but also deeply satisfying to produce. Whether used for personal consumption, crafting, or as a source of income, these natural resources add purpose to the practice.\n\nBeyond personal gains, beekeeping has significant ecological importance. Honeybees are vital pollinators, playing a crucial role in supporting agriculture and maintaining biodiversity. By keeping bees, individuals contribute to the health of local ecosystems, ensuring that plants, including crops and wildflowers, can thrive. Additionally, beekeeping fosters a deeper understanding of environmental challenges, such as habitat loss and pesticide use, empowering beekeepers to become advocates for sustainability. This sublesson delves into the diverse motivations for beekeeping, illustrating its impact on individuals and the world around us." 
             }
         ]
         },
         {
         "lessonNumber": 2,
-        "title": "Lesson 2: Bee Biology and Behavior",
+        "title": "Lesson 2: Beeology and Beehavior",
+        "content": "An introduction into bee biology, hive structure, and behavioral patterns",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "2.1", 
-            "title": "Hive Structure", 
+            "title": "2.1: Hive Structure", 
             "completed": false,
-            "content": "This is the 2.1 subsection" 
+            "content": "A beehive is much more than just a shelter for bees; it is a highly organized and efficient system that supports the complex life of a honeybee colony. The structure of a hive is designed to meet the bees' needs for storage, brood rearing, and protection. Inside a hive, bees build combs made of beeswax, forming a network of hexagonal cells. These cells serve multiple purposes: some are used for storing honey and pollen, while others house developing larvae as part of the brood nest.\n\nModern beekeeping often utilizes man-made hives, such as the Langstroth hive, which features removable frames that mimic the natural structure of wild hives. These frames allow beekeepers to inspect and manage the colony with minimal disruption. Other components of a hive include a bottom board, which provides a base for the structure, a brood box where the queen lays eggs, honey supers for storing surplus honey, and a roof or cover to protect the hive from the elements. This sublesson explores the architecture of a hive, revealing how its design supports the complex life and productivity of a bee colony." 
             },
             { 
             "subsectionNumber": "2.2", 
-            "title": "Bee Communication", 
+            "title": "2.2: Bee Communication", 
             "completed": false,
-            "content": "This is the 2.2 subsection" 
+            "content": "Honeybees are remarkable for their ability to communicate effectively within the hive, enabling them to work together as a cohesive unit. They use a combination of chemical signals, known as pheromones, and physical behaviors to share information about food sources, threats, and hive maintenance. Pheromones are crucial in regulating colony functions, such as signaling the presence of the queen, coordinating foraging, and warning of danger.\n\nOne of the most fascinating forms of bee communication is the waggle dance. When a foraging bee discovers a rich food source, it performs a dance on the comb to inform others of its location. The movements of the dance convey precise information about the direction and distance of the resource relative to the hive and the sun. This incredible behavior highlights the complexity and efficiency of bee communication. This sublesson delves into these communication methods, showing how bees work collaboratively to ensure the survival and success of their colony." 
             },
             { 
             "subsectionNumber": "2.3", 
-            "title": "Seasonal Behavior", 
+            "title": "2.3: Seasonal Behavior", 
             "completed": false,
-            "content": "This is the 2.3 subsection" 
+            "content": "Honeybees exhibit distinct seasonal behaviors that align with the changing environment and the availability of resources. These behaviors are crucial for the survival of the colony, as they allow bees to adapt to the demands of each season. In spring, the hive becomes highly active as flowers bloom and nectar flows increase. The queen lays eggs at a rapid pace, expanding the colony's population, while worker bees focus on foraging and building up stores of honey and pollen.\n\nDuring summer, the hive reaches its peak activity. Foragers collect nectar and pollen tirelessly, while the colony works to produce and store honey. This is also the time when bees may swarm—a natural process of colony reproduction where a portion of the bees leave with the old queen to establish a new hive. As autumn arrives and temperatures cool, the hive begins preparing for winter. Egg-laying decreases, drones are expelled, and the colony focuses on conserving resources. In winter, bees cluster together for warmth, surviving on stored honey until spring returns. This sublesson examines the seasonal patterns of honeybee behavior, showcasing their incredible adaptability and resilience throughout the year." 
+            },
+            { 
+            "subsectionNumber": "2.4", 
+            "title": "2.4: Swarming", 
+            "completed": false,
+            "content": "Swarming is a natural and fascinating process that occurs when a honeybee colony reproduces to form a new colony. This behavior typically happens in the spring or early summer when the hive is thriving, and the population has grown significantly. Swarming begins when the queen and a portion of the worker bees leave the hive in search of a new home, leaving behind the remaining bees and a developing new queen.\n\nThe process is meticulously organized. Scout bees search for suitable locations for the new hive, communicating their findings to the swarm through a waggle dance. During this time, the swarm may temporarily cluster on a tree branch or another surface while scouts deliberate. Once a consensus is reached, the bees relocate to their new home. While swarming is a natural part of colony reproduction, it can be a challenge for beekeepers, as it reduces the population and productivity of the original hive. This sublesson explores the reasons behind swarming, the stages of the process, and how beekeepers can manage or prevent swarms to maintain healthy colonies."
             }
         ]
         },
         {
         "lessonNumber": 3,
         "title": "Lesson 3: Beekeeping Equipment",
+        "content": "A guide to the tools and structures used in Beekeeping",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "3.1", 
-            "title": "Basic Tools", 
+            "title": "3.1: Basic Tools", 
             "completed": false,
-            "content": "This is the 3.1 subsection" 
+            "content": "Beekeeping requires a few essential tools to ensure the safety of the beekeeper and the proper management of the hive. The most important tool is a bee suit or protective clothing, which typically includes a full-body suit, gloves, and a veil to shield the face from stings. These items provide peace of mind and allow beekeepers to work confidently around their colonies.\n\nAnother critical tool is the hive tool, a multipurpose implement used to pry open hive boxes, lift frames, and scrape off excess wax or propolis. Smokers are also indispensable; they produce cool smoke that calms the bees, reducing their defensive behavior and making hive inspections more manageable. Additionally, beekeepers use a bee brush to gently move bees off frames and an uncapping knife for harvesting honey. This sublesson introduces the basic tools of beekeeping, explaining their purposes and how they contribute to effective hive management." 
             },
             { 
             "subsectionNumber": "3.2", 
-            "title": "Hive Types", 
+            "title": "3.2: Hive Types", 
             "completed": false,
-            "content": "This is the 3.2 subsection" 
+            "content": "Beekeepers use various types of hives, each designed to support the needs of the bees and make management more efficient. The most common hive type is the Langstroth hive, known for its modular design with removable frames. This design allows for easy inspection, honey extraction, and hive expansion while minimizing disturbance to the bees. Langstroth hives are widely used by both hobbyists and commercial beekeepers.\n\nAnother popular option is the Top-Bar hive, which features a horizontal layout with bars across the top where bees build combs naturally. This hive is simpler to construct and is often favored by small-scale or backyard beekeepers who prioritize low-maintenance management and natural beekeeping practices. Additionally, there are Warre hives, which are vertical and designed to mimic a tree hollow, offering a more hands-off approach. This sublesson explores the features, advantages, and challenges of different hive types, helping beekeepers choose the one that best suits their goals and environment." 
             }
         ]
         },
         {
         "lessonNumber": 4,
         "title": "Lesson 4: Starting Your First Apiary",
+        "content": "The process and tools needed for a beginning beekeeper to grow their first hive",
         "subsections": [
             { 
             "subsectionNumber": "4.1", 
-            "title": "Legal Regulations", 
+            "title": "4.1: Legal Regulations", 
             "completed": false,
-            "content": "This is the 4.1 subsection" 
+            "content": "Beekeeping in the United States is subject to a combination of federal, state, and local regulations designed to promote bee health, ensure public safety, and support agricultural practices.\n\nFederal Regulations: At the federal level, the U.S. Department of Agriculture (USDA) oversees the importation of honey bees and related products to prevent the introduction of pests and diseases. The Honey Bee Act of 1922, as amended, restricts the importation of honey bees and their germplasm to protect domestic bee populations. Additionally, the Animal and Plant Health Inspection Service (APHIS) enforces regulations concerning the movement of bees and beekeeping equipment across state lines." 
             },
             { 
             "subsectionNumber": "4.2", 
-            "title": "Choosing a Location", 
+            "title": "4.2: Choosing a Location", 
             "completed": false,
-            "content": "This is the 4.2 subsection" 
+            "content": "Selecting the right location for your beehives is crucial to the health and productivity of your colony. Bees require an environment that supports their foraging needs and protects them from extreme conditions. Ideally, hives should be placed in a sunny area with some protection from strong winds. Morning sunlight is particularly important as it helps warm the hive and encourages early foraging activity.\n\nAccess to a variety of flowering plants within a 2-3 mile radius is essential for providing bees with a continuous source of nectar and pollen. The location should also have a nearby water source, such as a pond, stream, or shallow dish filled with water, as bees need water for cooling the hive and diluting honey. Additionally, ensure the area is safe from predators, pesticides, and excessive human activity. This sublesson guides you through the key considerations for choosing the perfect hive location to set your bees up for success." 
             },
             { 
             "subsectionNumber": "4.3", 
-            "title": "Buying Your First Barry", 
+            "title": "4.3: Buying Your First Barry", 
             "completed": false,
-            "content": "This is the 4.3 subsection" 
+            "content": "Acquiring your first colony of bees is an exciting milestone for any new beekeeper. There are several ways to obtain bees, each with its own advantages. One of the most common methods is purchasing a package of bees, which includes a queen and a group of worker bees. Packages are ideal for beginners as they are widely available and can be easily introduced into a prepared hive.\n\nAnother option is buying a nucleus colony (nuc), which is a small, established hive containing a queen, workers, brood, and stored resources. Nucs tend to establish themselves faster in a new hive and may require less initial management than packages. Some beekeepers also acquire colonies by capturing swarms, though this method is better suited for those with some experience.\n\nWhen buying your bees, ensure they come from a reputable source to reduce the risk of pests and diseases. Additionally, consider the bee species or subspecies that will best suit your local environment and goals, such as Italian bees for their gentle nature or Carniolan bees for their winter hardiness. This sublesson provides an overview of the options for starting your beekeeping journey with a healthy and thriving colony." 
             }
         ]
         },
         {
         "lessonNumber": 5,
         "title": "Lesson 5: Hive Management",
+        "content": "Good procedure and schedules to utilize when beekeeping",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "5.1", 
-            "title": "Routine Inspections", 
+            "title": "5.1: Routine Inspections", 
             "completed": false,
-            "content": "This is the 5.1 subsection" 
+            "content": "Routine hive inspections are an essential part of beekeeping, allowing you to monitor the health and productivity of your colony. During inspections, beekeepers check for the presence of a healthy queen, the development of brood, and the availability of resources such as honey and pollen. Ensuring the queen is laying eggs consistently and spotting a balanced brood pattern—eggs, larvae, and capped brood—is a good indicator of a thriving hive.\n\nInspections also help identify potential issues, such as pests like varroa mites, diseases like American foulbrood, or signs of stress, such as overcrowding or insufficient food stores. Beekeepers typically perform inspections every 7-10 days during the active season but reduce this frequency in colder months to avoid disturbing the cluster. This sublesson focuses on the importance of routine inspections, what to look for, and how to perform them effectively to maintain a healthy colony." 
             },
             { 
             "subsectionNumber": "5.2", 
-            "title": "Bee Dinner", 
+            "title": "5.2: The Bee Menu", 
             "completed": false,
-            "content": "This is the 5.2 subsection" 
+            "content": "A well-balanced diet is essential for the health and productivity of honeybees, as their nutritional intake directly impacts brood development, immunity, and overall hive vitality. Bees rely on two primary food sources: nectar, which provides energy through carbohydrates, and pollen, which supplies proteins, lipids, vitamins, and minerals needed for growth and reproduction.\n\nIn natural settings, bees forage for a diverse range of flowering plants to meet their dietary needs. However, during times of scarcity, such as early spring or late fall, beekeepers may need to supplement their diet. Common supplements include sugar syrup for energy and pollen substitutes or patties for protein. Proper timing and moderation of supplements are critical to avoid dependency or overfeeding. This sublesson explores the dietary needs of bees, the importance of floral diversity, and how beekeepers can support their colonies through proper feeding practices." 
             },
             { 
             "subsectionNumber": "5.3", 
-            "title": "Managing Your Hivespace",
+            "title": "5.3: Managing Your Hivespace",
             "completed": false, 
-            "content": "This is the 5.3 subsection" 
+            "content": "Effective management of hivespace is crucial for maintaining a healthy and productive colony. Bees need enough space to store honey, raise brood, and move freely within the hive. Too little space can lead to overcrowding, increasing the risk of swarming, while too much space can make it difficult for bees to regulate hive temperature and protect against pests.\n\nTo manage hivespace effectively, regularly monitor the hive's population and activity during inspections. As the colony grows in spring and summer, add supers or expand the brood area to accommodate the increased demand. Conversely, as activity slows in fall and winter, reduce the hivespace to help bees maintain warmth and conserve energy. Proper spacing also includes ensuring frames are evenly distributed and accessible. This sublesson provides strategies for optimizing hivespace throughout the seasons, helping your colony thrive while minimizing potential challenges." 
             }
         ]
         },
         {
         "lessonNumber": 6,
         "title": "Lesson 6: Disease Management",
+        "content": "A guide to identifying, preventing, and treating diseases in bees",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "6.1", 
-            "title": "Common Diseases", 
+            "title": "6.1: Common Diseases", 
             "completed": false,
-            "content": "This is the 6.1 subsection" 
+            "content": "Honeybee colonies face several diseases that can weaken or destroy them if not promptly identified and managed. One of the most well-known is American Foulbrood (AFB), a bacterial infection that affects bee larvae and can rapidly spread through the hive. Symptoms include sunken, discolored brood cells and a foul odor. AFB is highly contagious, and severe cases may require burning infected equipment to prevent its spread.\n\nAnother common disease is European Foulbrood (EFB), which also targets larvae but is typically less destructive than AFB. Signs of EFB include twisted or discolored larvae and an uneven brood pattern. Nosema, a fungal infection, affects adult bees, causing digestive issues, reduced foraging ability, and colony decline. Additionally, chalkbrood, caused by a fungal pathogen, results in mummified larvae visible in and outside the hive.\n\nBeekeepers should conduct regular inspections to identify symptoms early and maintain strong colonies through proper nutrition, hygiene, and pest management. This sublesson provides an overview of common diseases, their symptoms, and effective methods for prevention and treatment to ensure your hive remains healthy." 
             },
             { 
             "subsectionNumber": "6.2", 
-            "title": "Pests & Predators", 
+            "title": "6.2: Pests & Predators", 
             "completed": false,
-            "content": "This is the 6.2 subsection" 
+            "content": "Honeybee colonies face numerous threats from pests and predators that can disrupt hive activity, damage resources, and even lead to colony collapse if left unchecked. One of the most notorious pests is the Varroa mite, a parasitic mite that attaches to bees and feeds on their bodily fluids. These mites weaken bees and transmit deadly viruses, making them a major challenge for beekeepers. Regular monitoring and treatments, such as chemical controls or integrated pest management techniques, are essential to manage Varroa infestations.\n\nOther pests include wax moths, which destroy comb by feeding on wax, pollen, and larvae, and small hive beetles, which invade hives and cause damage by feeding on honey and brood. Ants and wasps are opportunistic invaders, often raiding hives for honey or attacking weaker colonies. Predators like skunks, bears, and birds can physically damage hives or prey on bees, posing a threat to apiaries, especially in rural areas.\n\nProtecting your hive involves a combination of preventative measures, such as maintaining strong colonies, using physical barriers, and keeping the hive area clean and secure. This sublesson delves into common pests and predators, offering practical strategies to safeguard your bees and hive resources." 
             },
             { 
             "subsectionNumber": "6.3", 
-            "title": "Preventing Beeradication", 
+            "title": "6.3: Preventing Beeradication", 
             "completed": false,
-            "content": "This is the 6.3 subsection" 
+            "content": "Preventing diseases in your bee colony is a cornerstone of successful beekeeping. A proactive approach involves maintaining a clean and well-managed hive environment to reduce the risk of pathogens and pests taking hold. One of the most effective measures is practicing regular hive inspections to identify early signs of disease, such as irregular brood patterns, discolored larvae, or reduced bee activity. Early detection allows for prompt intervention, preventing the spread of infections.\n\nGood nutrition also plays a vital role in disease prevention. Ensuring your bees have access to diverse and pesticide-free forage helps strengthen their immune systems. During periods of scarcity, supplementing with sugar syrup or pollen substitutes can provide the necessary nutrients to sustain colony health. Additionally, rotating combs regularly and replacing old frames with fresh foundation reduces the buildup of pathogens like bacteria and fungi.\n\nBeekeepers should also be aware of regional disease threats and stay updated on best practices through local beekeeping associations or agricultural extension services. Responsible hive management, including avoiding overcrowding and practicing hygiene with tools and equipment, further minimizes the risk of disease. This sublesson highlights preventative strategies to keep your bees healthy and your colony thriving." 
             }
         ]
         },
         {
         "lessonNumber": 7,
         "title": "Lesson 7: Sustainable Honey",
+        "content": "A guide to harvest honey and other products safely for both the beekeeper and the beehive",
         "completed": false,
         "subsections": [
             { 
             "subsectionNumber": "7.1", 
-            "title": "When to Harvest", 
+            "title": "7.1: When to Harvest", 
             "completed": false,
-            "content": "This is the 7.1 subsection" 
+            "content": "Knowing the right time to harvest honey is essential to ensure both the quality of the honey and the health of your colony. The ideal time to harvest is when the bees have capped the majority of the honeycomb cells with wax, indicating that the honey has reached the proper moisture content and is ready for storage. Uncapped honey may have too much water content, risking fermentation during storage.\n\nHarvesting typically occurs in late spring or summer, depending on the local climate and the abundance of nectar-producing plants. It's important to leave enough honey for the bees to sustain themselves, especially as they prepare for fall and winter. A good rule of thumb is to ensure the colony has at least 40-60 pounds of honey stored for colder months, depending on your region.\n\nThis sublesson guides you through assessing hive readiness, understanding seasonal factors, and balancing honey harvesting with the long-term health of your colony. By harvesting at the right time, you can enjoy high-quality honey while ensuring your bees remain strong and productive." 
             },
             { 
             "subsectionNumber": "7.2", 
-            "title": "How to Extract Honey", 
+            "title": "7.2: How to Extract Honey", 
             "completed": false,
-            "content": "This is the 7.2 subsection" 
+            "content": "Extracting honey is one of the most rewarding aspects of beekeeping, but it requires careful handling to ensure the honey is clean and the hive remains healthy. The process begins with selecting fully capped frames of honey, which indicates the moisture content is suitable for long-term storage. Carefully remove the frames from the hive, using a bee brush or smoker to gently clear bees from the comb.\n\nOnce the frames are removed, the wax cappings must be cut or scraped off to expose the honey. This is typically done with an uncapping knife or fork. The uncapped frames are then placed in a honey extractor, a centrifugal device that spins the frames to release honey without damaging the comb. The extracted honey flows out of the extractor into a sieve or strainer to remove bits of wax and debris, ensuring a pure final product.\n\nAfter straining, the honey can be bottled and stored in clean, airtight containers. Be sure to return the empty comb frames to the hive, as bees can reuse them, saving energy and resources. This sublesson provides a step-by-step guide to extracting honey efficiently, ensuring both high-quality results and minimal disruption to your bees." 
             },
             { 
             "subsectionNumber": "7.3", 
-            "title": "How to Store Honey", 
+            "title": "7.3: How to Store Honey", 
             "completed": false,
-            "content": "This is the 7.3 subsection" 
+            "content": "Proper storage is crucial to preserving the quality and longevity of your honey. Honey is a natural product with an exceptionally long shelf life, but it requires the right conditions to maintain its flavor, texture, and nutritional value. The first step is to ensure the honey is thoroughly strained to remove any wax, pollen, or debris that might cause spoilage.\n\nStore honey in clean, airtight containers made of glass, food-grade plastic, or stainless steel. Keep the containers in a cool, dry place away from direct sunlight, as exposure to heat and light can degrade honey’s color and flavor over time. Ideal storage temperatures are between 50°F and 70°F (10°C and 21°C). Avoid storing honey in the refrigerator, as this can cause crystallization.\n\nIf honey does crystallize, it can easily be returned to a liquid state by gently warming the container in a water bath, ensuring the temperature does not exceed 104°F (40°C) to preserve its natural enzymes. This sublesson explains the best practices for storing honey, helping you maintain its quality and enjoy your harvest for months or even years to come." 
             },
             { 
             "subsectionNumber": "7.4", 
-            "title": "Other Bee Products", 
+            "title": "7.4: Other Bee Products", 
             "completed": false,
-            "content": "This is the 7.4 subsection" 
+            "content": "Proper storage is crucial to preserving the quality and longevity of your honey. Honey is a natural product with an exceptionally long shelf life, but it requires the right conditions to maintain its flavor, texture, and nutritional value. The first step is to ensure the honey is thoroughly strained to remove any wax, pollen, or debris that might cause spoilage.\n\nStore honey in clean, airtight containers made of glass, food-grade plastic, or stainless steel. Keep the containers in a cool, dry place away from direct sunlight, as exposure to heat and light can degrade honey’s color and flavor over time. Ideal storage temperatures are between 50°F and 70°F (10°C and 21°C). Avoid storing honey in the refrigerator, as this can cause crystallization.\n\nIf honey does crystallize, it can easily be returned to a liquid state by gently warming the container in a water bath, ensuring the temperature does not exceed 104°F (40°C) to preserve its natural enzymes. This sublesson explains the best practices for storing honey, helping you maintain its quality and enjoy your harvest for months or even years to come." 
             }
         ]
         }
