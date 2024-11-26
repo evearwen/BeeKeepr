@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 ///                         Notes Item
@@ -52,12 +53,21 @@ class _NoteItemState extends State<NoteItem> {
   }
 
   void _toggleEditMode() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to edit notes.')),
+      );
+      return;
+    }
+
     if (_isEditing) {
       // Save changes to Firestore
       await FirebaseFirestore.instance
           .collection('notes')
           .doc(widget.noteId)
           .update({
+        'uid': user.uid, // Ensure the user's ID is included
         'Title': _titleController.text,
         'Content': _contentController.text,
       });

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HiveEdit extends StatefulWidget {
@@ -156,8 +157,16 @@ class _HiveEditState extends State<HiveEdit> {
   }
 
   void _saveChanges() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to save a hive.')),
+      );
+      return;
+    }
     // Collect the form data
     final hiveData = {
+      'uid': user.uid,
       'Title': _hiveNameController.text.trim(),
       'Type': _hiveTypeController.text.trim(),
       'Color': _hiveColorController.text.trim(),

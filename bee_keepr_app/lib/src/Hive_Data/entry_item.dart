@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
@@ -64,6 +65,14 @@ class _EntryItemState extends State<EntryItem> {
   }
 
   void saveEntry(String hiveId) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to create notes.')),
+      );
+      return;
+    }
+
     // Collect data from your controllers and widgets
     String entryName = entryNameController.text.trim();
     String date = dateController.text.trim();
@@ -72,14 +81,15 @@ class _EntryItemState extends State<EntryItem> {
     String weather = selectedWeather;
     double? temp = double.tryParse(tempController.text.trim());
 
-    // Example boolean toggle values
-    bool seenQueen = true; // Replace with your logic to read this value
-    bool noDiseases = false; // Replace with your logic to read this value
-    bool honey = true; // Replace with your logic to read this value
-    bool noStressors = false; // Replace with your logic to read this value
+    //! Need to actually save the bools somehow
+    bool seenQueen = true;
+    bool noDiseases = false;
+    bool honey = true;
+    bool noStressors = false;
 
     // Prepare the data as a Map
     Map<String, dynamic> entryData = {
+      'uid': user.uid,
       'Title': entryName,
       'Date': date,
       'Location': location,
@@ -90,8 +100,8 @@ class _EntryItemState extends State<EntryItem> {
       'NoDiseases': noDiseases,
       'Honey': honey,
       'NoStressors': noStressors,
-      'Tags': selectedTags, // Selected tags list
-      'hiveId': hiveId, // Associate entry with this hive
+      'Tags': selectedTags,
+      'hiveId': hiveId,
     };
 
     try {

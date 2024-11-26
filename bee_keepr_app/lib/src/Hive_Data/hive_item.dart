@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/Hive_Data/hive_edit.dart';
 import 'package:bee_keepr_app/src/hive_data/entry_item.dart';
@@ -49,13 +50,28 @@ class _HiveItemState extends State<HiveItem> {
   }
 
   Stream<QuerySnapshot> fetchHiveEntries() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return Stream
+          .empty(); // Return an empty stream if the user is not signed in
+    }
     return FirebaseFirestore.instance
         .collection('entries')
-        .where('hiveId', isEqualTo: widget.hiveId)
+        .where('uid',
+            isEqualTo: user.uid) // Filter by the authenticated user's ID
+        .where('hiveId', isEqualTo: widget.hiveId) // Match the hive ID
         .snapshots();
   }
 
   void _addNewEntry() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to add entries.')),
+      );
+      return;
+    }
+
     Navigator.push(
       context,
       MaterialPageRoute(

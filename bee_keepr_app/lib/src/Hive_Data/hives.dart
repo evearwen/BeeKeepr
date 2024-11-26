@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_item.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_edit.dart';
@@ -33,7 +34,15 @@ class _HivesState extends State<Hives> {
   }
 
   Stream<QuerySnapshot> fetchHives() {
-    return FirebaseFirestore.instance.collection('hives').snapshots();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return Stream.empty(); // Return an empty stream if not signed in
+    }
+    return FirebaseFirestore.instance
+        .collection('hives')
+        .where('uid',
+            isEqualTo: user.uid) // Filter by the authenticated user's ID
+        .snapshots();
   }
 
   @override
