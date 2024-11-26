@@ -53,7 +53,14 @@ class _EntryItemState extends State<EntryItem> {
     super.initState();
     if (widget.entryId != null) {
       _loadEntryData();
+    } else {
+      dateController.text = _getCurrentDateAsString();
     }
+  }
+
+  String _getCurrentDateAsString() {
+    final now = DateTime.now();
+    return "${now.month}/${now.day}/${now.year}";
   }
 
   Widget _buildTextField(TextEditingController controller, String label,
