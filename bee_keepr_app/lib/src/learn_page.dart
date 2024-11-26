@@ -21,8 +21,9 @@ class LearnPage extends StatefulWidget {
 class _LearnPageState extends State<LearnPage> {
   // Manage the visibility of submenus
   List<dynamic> lessons = [];
-  String articleTitle = "Beekeeping School";
-  String currentContent = "";
+  String articleTitle = "Welcome to Beekeeping School!";
+  String currentContent =
+      "Start with the first lesson, or continue from where you left off";
 
   // Load lessons from json
   Future<void> loadLessons() async {
@@ -98,7 +99,7 @@ class _LearnPageState extends State<LearnPage> {
                       title: "Lesson ${lesson['lessonNumber']}",
                       isExpanded: lesson['isExpanded'] ?? false,
                       onTap: () {
-                        updateTitle(lesson['title']);
+                        updateLesson(lesson['title'], lesson['content']);
                         setState(() {
                           lesson['isExpanded'] =
                               !(lesson['isExpanded'] ?? false);
