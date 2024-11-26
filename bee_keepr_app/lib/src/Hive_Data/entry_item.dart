@@ -16,9 +16,15 @@ import '../globals.dart' as globals;
 
 class EntryItem extends StatefulWidget {
   final String title;
-  final String hiveId; // Add hiveId
+  final String hiveId;
+  final String? entryId;
 
-  const EntryItem({super.key, required this.title, required this.hiveId});
+  const EntryItem({
+    super.key,
+    required this.title,
+    required this.hiveId,
+    this.entryId,
+  });
 
   @override
   _EntryItemState createState() => _EntryItemState();
@@ -35,6 +41,20 @@ class _EntryItemState extends State<EntryItem> {
   String selectedWeather = 'Clear'; // Default value for the dropdown
   final List<String> tags = globals.tags;
   final List<String> selectedTags = [];
+
+  // Boolean state variables
+  bool seenQueen = true;
+  bool noDiseases = true;
+  bool honey = true;
+  bool noStressors = true;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.entryId != null) {
+      _loadEntryData();
+    }
+  }
 
   Widget _buildTextField(TextEditingController controller, String label,
       {bool isNumber = false, int maxLines = 1}) {
@@ -64,6 +84,37 @@ class _EntryItemState extends State<EntryItem> {
     });
   }
 
+  Future<void> _loadEntryData() async {
+    try {
+      final entrySnapshot = await FirebaseFirestore.instance
+          .collection('entries')
+          .doc(widget.entryId)
+          .get();
+
+      if (entrySnapshot.exists) {
+        final data = entrySnapshot.data()!;
+        setState(() {
+          entryNameController.text = data['Title'] ?? '';
+          dateController.text = data['Date'] ?? '';
+          locationController.text = data['Location'] ?? '';
+          notesController.text = data['Notes'] ?? '';
+          tempController.text = (data['Temp'] ?? '').toString();
+          selectedWeather = data['Weather'] ?? 'Clear';
+          seenQueen = data['SeenQueen'] ?? true;
+          noDiseases = data['NoDiseases'] ?? true;
+          honey = data['Honey'] ?? true;
+          noStressors = data['NoStressors'] ?? true;
+          selectedTags.addAll(List<String>.from(data['Tags'] ?? []));
+        });
+      }
+    } catch (e) {
+      print('Error loading entry data: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to load entry data.')),
+      );
+    }
+  }
+
   void saveEntry(String hiveId) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
@@ -80,12 +131,6 @@ class _EntryItemState extends State<EntryItem> {
     String notes = notesController.text.trim();
     String weather = selectedWeather;
     double? temp = double.tryParse(tempController.text.trim());
-
-    //! Need to actually save the bools somehow
-    bool seenQueen = true;
-    bool noDiseases = false;
-    bool honey = true;
-    bool noStressors = false;
 
     // Prepare the data as a Map
     Map<String, dynamic> entryData = {
@@ -105,22 +150,33 @@ class _EntryItemState extends State<EntryItem> {
     };
 
     try {
-      // Save entry to the `entries` collection
-      DocumentReference entryRef =
-          await FirebaseFirestore.instance.collection('entries').add(entryData);
+      if (widget.entryId != null) {
+        // Update existing entry
+        await FirebaseFirestore.instance
+            .collection('entries')
+            .doc(widget.entryId)
+            .update(entryData);
+      } else {
+        // Create new entry
+        DocumentReference entryRef = await FirebaseFirestore.instance
+            .collection('entries')
+            .add(entryData);
 
-      // Update the Hive document to include this entry
-      await FirebaseFirestore.instance.collection('hives').doc(hiveId).update({
-        'Entries': FieldValue.arrayUnion([
-          {'entryId': entryRef.id, 'entryTitle': entryName} // Entry metadata
-        ])
-      });
+        await FirebaseFirestore.instance
+            .collection('hives')
+            .doc(hiveId)
+            .update({
+          'Entries': FieldValue.arrayUnion([
+            {'entryId': entryRef.id, 'entryTitle': entryName}
+          ])
+        });
+      }
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Entry saved successfully!')),
       );
 
-      Navigator.pop(context); // Go back to the previous page
+      Navigator.pop(context);
     } catch (e) {
       print("Error saving entry: $e");
       ScaffoldMessenger.of(context).showSnackBar(
@@ -210,19 +266,51 @@ class _EntryItemState extends State<EntryItem> {
             ),
             _buildTextField(locationController, 'Location'),
             const SizedBox(height: 16),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _StatusToggle(label: 'Seen Queen'),
-                _StatusToggle(label: 'No Diseases'),
+                _StatusToggle(
+                  label: 'Seen Queen',
+                  value: seenQueen,
+                  onChanged: (value) {
+                    setState(() {
+                      seenQueen = value;
+                    });
+                  },
+                ),
+                _StatusToggle(
+                  label: 'No Diseases',
+                  value: noDiseases,
+                  onChanged: (value) {
+                    setState(() {
+                      noDiseases = value;
+                    });
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 8),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _StatusToggle(label: 'Honey'),
-                _StatusToggle(label: 'No Stressors'),
+                _StatusToggle(
+                  label: 'Honey',
+                  value: honey,
+                  onChanged: (value) {
+                    setState(() {
+                      honey = value;
+                    });
+                  },
+                ),
+                _StatusToggle(
+                  label: 'No Stressors',
+                  value: noStressors,
+                  onChanged: (value) {
+                    setState(() {
+                      noStressors = value;
+                    });
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -310,16 +398,16 @@ class _EntryItemState extends State<EntryItem> {
   }
 }
 
-class _StatusToggle extends StatefulWidget {
+class _StatusToggle extends StatelessWidget {
   final String label;
-  const _StatusToggle({required this.label});
+  final bool value; // Controlled value from parent
+  final ValueChanged<bool> onChanged; // Callback to notify parent of changes
 
-  @override
-  _StatusToggleState createState() => _StatusToggleState();
-}
-
-class _StatusToggleState extends State<_StatusToggle> {
-  bool isChecked = true;
+  const _StatusToggle({
+    required this.label,
+    required this.value,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -327,21 +415,19 @@ class _StatusToggleState extends State<_StatusToggle> {
       children: [
         GestureDetector(
           onTap: () {
-            setState(() {
-              isChecked = !isChecked;
-            });
+            onChanged(!value); // Toggle the value and notify the parent
           },
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: isChecked ? Colors.green : Colors.red,
+            backgroundColor: value ? Colors.green : Colors.red,
             child: Icon(
-              isChecked ? Icons.thumb_up : Icons.thumb_down,
+              value ? Icons.thumb_up : Icons.thumb_down,
               color: Colors.white,
             ),
           ),
         ),
         const SizedBox(height: 4),
-        Text(widget.label),
+        Text(label),
       ],
     );
   }

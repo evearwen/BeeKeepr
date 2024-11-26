@@ -137,6 +137,7 @@ class _HiveItemState extends State<HiveItem> {
                                   builder: (context) => EntryItem(
                                     title: entry['Title'],
                                     hiveId: widget.hiveId,
+                                    entryId: entry.id,
                                   ),
                                 ),
                               );
