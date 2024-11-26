@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HiveEdit extends StatefulWidget {
@@ -13,7 +14,7 @@ class HiveEdit extends StatefulWidget {
   final String? notes;
 
   const HiveEdit({
-    Key? key,
+    super.key,
     this.hiveName,
     this.hiveType,
     this.hiveColor,
@@ -24,7 +25,7 @@ class HiveEdit extends StatefulWidget {
     this.queenBreed,
     this.queenColor,
     this.notes,
-  }) : super(key: key);
+  });
 
   @override
   _HiveEditState createState() => _HiveEditState();
@@ -154,21 +155,52 @@ class _HiveEditState extends State<HiveEdit> {
     );
   }
 
-  void _saveChanges() {
-    // Implement save functionality here
-    // Example: You could call a provider or pass the edited data back via Navigator.pop
-    Navigator.of(context).pop({
-      'hiveName': _hiveNameController.text,
-      'hiveType': _hiveTypeController.text,
-      'hiveColor': _hiveColorController.text,
-      'location': _locationController.text,
-      'numberOfDeeps': int.tryParse(_numberOfDeepsController.text) ?? 0,
-      'numberOfSupers': int.tryParse(_numberOfSupersController.text) ?? 0,
-      'numberOfFrames': int.tryParse(_numberOfFramesController.text) ?? 0,
-      'queenBreed': _queenBreedController.text,
-      'queenColor': _queenColorController.text,
-      'notes': _notesController.text,
-    });
+  void _saveChanges() async {
+    // Collect the form data
+    final hiveData = {
+      'Title': _hiveNameController.text.trim(),
+      'Type': _hiveTypeController.text.trim(),
+      'Color': _hiveColorController.text.trim(),
+      'Location': _locationController.text.trim(),
+      'Deeps': int.tryParse(_numberOfDeepsController.text.trim()) ?? 0,
+      'Supers': int.tryParse(_numberOfSupersController.text.trim()) ?? 0,
+      'Frames': int.tryParse(_numberOfFramesController.text.trim()) ?? 0,
+      'QueenBreed': _queenBreedController.text.trim(),
+      'QueenColor': _queenColorController.text.trim(),
+      'Notes': _notesController.text.trim(),
+      'Entries': [], // Ensure Entries is initialized as an empty list
+    };
+
+    try {
+      if (widget.hiveName == null) {
+        // This is a new hive
+        await FirebaseFirestore.instance.collection('hives').add(hiveData);
+      } else {
+        // This is an edit operation
+        QuerySnapshot query = await FirebaseFirestore.instance
+            .collection('hives')
+            .where('Title', isEqualTo: widget.hiveName)
+            .get();
+
+        if (query.docs.isNotEmpty) {
+          // Update the existing hive
+          await FirebaseFirestore.instance
+              .collection('hives')
+              .doc(query.docs[0].id)
+              .update(hiveData);
+        }
+      }
+
+      // Notify the user and navigate back
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Hive saved successfully!')),
+      );
+      Navigator.of(context).pop(); // Go back to the previous screen
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to save hive: $e')),
+      );
+    }
   }
 
   @override

@@ -1,4 +1,4 @@
-package com.example.bee_keepr_app
+package com.beekeepr.app
 
 import io.flutter.embedding.android.FlutterActivity
 
