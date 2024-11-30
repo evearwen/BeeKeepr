@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'note_item.dart';
 
@@ -17,47 +19,27 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
-  final List<String> NoteTitles = ['Note 1', 'Note 2', 'Note 3', 'Note 4'];
+  var db = FirebaseFirestore.instance;
 
-  void _addNewNote() {
-    setState(() {
-      NoteTitles.add('Note ${NoteTitles.length + 1}');
-    });
+  void _addNewNote() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to create notes.')),
+      );
+      return;
+    }
 
-    //edited so that users will be sent to the note page when creating a new note instead of staying in the note menu
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NoteItem(
-          title: 'Note ${NoteTitles.length}',
-          content: '',
-          onDelete: () {
-            setState(() {
-              NoteTitles.removeAt(NoteTitles.length - 1);
-            });
-          },
-          onTitleChanged: (newTitle) {
-            setState(() {
-              NoteTitles[NoteTitles.length - 1] = newTitle;
-            });
-          },
-          isNewNote: true,
-        ),
-      ),
-    );
-  }
-
-  //functionality to update note names
-  void _updateNoteTitle(int index, String newTitle) {
-    setState(() {
-      NoteTitles[index] = newTitle;
+    await FirebaseFirestore.instance.collection('notes').add({
+      'uid': user.uid,
+      'Title': 'New Note',
+      'Content': '',
+      'CreatedAt': Timestamp.now(),
     });
   }
 
-  void _deleteNoteAt(int index) {
-    setState(() {
-      NoteTitles.removeAt(index);
-    });
+  void _deleteNoteAt(String noteId) async {
+    await db.collection('notes').doc(noteId).delete();
   }
 
   @override
@@ -68,75 +50,72 @@ class _NotesState extends State<Notes> {
         centerTitle: true,
         backgroundColor: const Color(0xFFE9AB17),
         title: const Text(
-          "Note",
+          "Notes",
           style: TextStyle(fontSize: 50, color: Colors.black),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView.builder(
-          itemCount: NoteTitles.length,
-          itemBuilder: (context, index) {
-            final title = NoteTitles[index];
-            return Dismissible(
-              key: Key(title),
-              direction:
-                  DismissDirection.horizontal, //left and right functionality
-              background: Container(
-                color: Colors.blue,
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const Icon(Icons.edit, color: Colors.white),
-              ),
-              secondaryBackground: Container(
-                color: Colors.red,
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const Icon(Icons.delete, color: Colors.white),
-              ),
-              confirmDismiss: (direction) async {
-                if (direction == DismissDirection.endToStart) {
-                  _deleteNoteAt(index);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('$title deleted')),
-                  );
-                } else if (direction == DismissDirection.startToEnd) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NoteItem(
-                        title: title,
-                        content: '',
-                        onDelete: () => _deleteNoteAt(index),
-                        onTitleChanged: (newTitle) =>
-                            _updateNoteTitle(index, newTitle),
-                      ),
+          padding: const EdgeInsets.all(20),
+          child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('notes')
+                .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              final notes = snapshot.data!.docs;
+
+              return ListView.builder(
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  final note = notes[index];
+                  final title = note['Title'];
+                  final content = note['Content'];
+                  return Dismissible(
+                    key: Key(note.id),
+                    direction: DismissDirection.endToStart,
+                    background: Container(
+                      color: Colors.red,
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const Icon(Icons.delete, color: Colors.white),
                     ),
-                  );
-                }
-                return false;
-              },
-              child: ListTile(
-                title: Text(title),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NoteItem(
-                        title: title,
-                        content: '',
-                        onDelete: () => _deleteNoteAt(index),
-                        onTitleChanged: (newTitle) =>
-                            _updateNoteTitle(index, newTitle),
-                      ),
+                    onDismissed: (direction) {
+                      FirebaseFirestore.instance
+                          .collection('notes')
+                          .doc(note.id)
+                          .delete();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('$title deleted')),
+                      );
+                    },
+                    child: ListTile(
+                      title: Text(title),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NoteItem(
+                              title: title,
+                              content: content,
+                              noteId: note.id,
+                              onDelete: () => FirebaseFirestore.instance
+                                  .collection('notes')
+                                  .doc(note.id)
+                                  .delete(),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
-              ),
-            );
-          },
-        ),
-      ),
+              );
+            },
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10),

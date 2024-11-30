@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_item.dart';
 import 'package:bee_keepr_app/src/hive_data/hive_edit.dart';
@@ -31,10 +33,21 @@ class _HivesState extends State<Hives> {
     });
   }
 
+  Stream<QuerySnapshot> fetchHives() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return Stream.empty(); // Return an empty stream if not signed in
+    }
+    return FirebaseFirestore.instance
+        .collection('hives')
+        .where('uid',
+            isEqualTo: user.uid) // Filter by the authenticated user's ID
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: const Color(0xFFE9AB17),
@@ -43,62 +56,67 @@ class _HivesState extends State<Hives> {
           style: TextStyle(fontSize: 50, color: Colors.black),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView.builder(
-          itemCount: hiveTitles.length,
-          itemBuilder: (context, index) {
-            final title = hiveTitles[index];
-            return Dismissible(
-              key: Key(title),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                color: Colors.red,
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const Icon(Icons.delete, color: Colors.white),
-              ),
-              onDismissed: (direction) {
-                _deleteHive(index);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('$title deleted')),
-                );
-              },
-              child: ListTile(
-                title: Text(title),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HiveItem(title: title),
-                    ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: fetchHives(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const CircularProgressIndicator();
+          final hives = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: hives.length,
+            itemBuilder: (context, index) {
+              final hive = hives[index];
+              return Dismissible(
+                key: Key(hive.id),
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+                onDismissed: (direction) async {
+                  await FirebaseFirestore.instance
+                      .collection('hives')
+                      .doc(hive.id)
+                      .delete();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('${hive['Title']} deleted')),
                   );
                 },
-              ),
-            );
-          },
-        ),
+                child: ListTile(
+                  title: Text(hive['Title']),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HiveItem(
+                          hiveId: hive
+                              .id, // Pass the Firestore document ID as hiveId
+                          title: hive['Title'], // Pass the hive title
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          );
+        },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFE9AB17),
-            padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-          ),
-          onPressed: () async {
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HiveEdit()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HiveEdit()),
+          );
+          if (result != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Hive added successfully!')),
             );
-            //! Will have to add a check to see if edit hive was called from Hives page or HiveItem
-            //! If its called from Hives Page we would run the below and pass in the title as input
-            //! Otherwise we want to edit the existing hive
-            _addNewHive();
-          },
-          child: const Text("New Hive", style: TextStyle(fontSize: 30)),
-        ),
+          }
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

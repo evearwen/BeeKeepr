@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 ///                         Notes Item
@@ -12,19 +14,17 @@ import 'package:flutter/material.dart';
 class NoteItem extends StatefulWidget {
   final String title;
   final String content;
+  final String noteId;
   final VoidCallback onDelete;
-  final ValueChanged<String>
-      onTitleChanged; //adding so that users can edit note titles
   final bool isNewNote;
 
-  const NoteItem({
-    super.key,
-    required this.title,
-    required this.content,
-    required this.onDelete,
-    required this.onTitleChanged,
-    this.isNewNote = false,
-  });
+  const NoteItem(
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.onDelete,
+      required this.noteId,
+      this.isNewNote = false});
 
   @override
   _NoteItemState createState() => _NoteItemState();
@@ -52,18 +52,32 @@ class _NoteItemState extends State<NoteItem> {
     super.dispose();
   }
 
-  void _toggleEditMode() {
+  void _toggleEditMode() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You must be signed in to edit notes.')),
+      );
+      return;
+    }
+
+    if (_isEditing) {
+      // Save changes to Firestore
+      await FirebaseFirestore.instance
+          .collection('notes')
+          .doc(widget.noteId)
+          .update({
+        'uid': user.uid, // Ensure the user's ID is included
+        'Title': _titleController.text,
+        'Content': _contentController.text,
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Note updated successfully')),
+      );
+    }
     setState(() {
       _isEditing = !_isEditing;
     });
-  }
-
-  //save a new title
-  void _saveTitle() {
-    if (_isEditing) {
-      widget.onTitleChanged(_titleController.text);
-      _toggleEditMode();
-    }
   }
 
   @override
@@ -97,7 +111,7 @@ class _NoteItemState extends State<NoteItem> {
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.save : Icons.edit),
-            onPressed: _isEditing ? _saveTitle : _toggleEditMode,
+            onPressed: _toggleEditMode,
           ),
           if (_isEditing)
             IconButton(

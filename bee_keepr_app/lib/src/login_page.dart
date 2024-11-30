@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart'; // new
 import 'package:flutter/material.dart';
 import 'menu_page.dart';
 
@@ -15,88 +18,56 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFE9AB17),
-      appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: const Color(0xFFE9AB17),
-          title: const Padding(
-            padding: EdgeInsets.only(left: 20.0, top: 0),
-            child: Text("BeeKeepr",
-                style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
-          )),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment:
-              CrossAxisAlignment.center, // Align items to the start
-          children: [
-            Padding(
-                padding:
-                    const EdgeInsets.only(left: 0), // Logo Dimensional Offset
-                child: Image.asset(
-                  "assets/images/beekeepr_logo.png",
-                  scale: 5,
-                )),
-            const SizedBox(height: 20), // Space after Logo
-            const Text("Protect the Bees",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
-            const Text("Protect the World",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
-            const SizedBox(height: 40),
-            const Text(
-              "Username",
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            const SizedBox(
-                width: 400,
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your username',
-                  ),
-                )),
-            const SizedBox(
-                height: 16), // Space between the username and password fields
-            const Text(
-              "Password",
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            const SizedBox(
-                width: 400,
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your password',
-                  ),
-                )),
-            const SizedBox(height: 16),
-            ElevatedButton(
-                onPressed: () {
-                  const AlertDialog(semanticLabel: "button pressed");
-                  // Handle Login Attempt Here
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MenuPage()),
-                  );
-                },
-                child: const Text("Log In"))
-          ],
-        ),
-      ),
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return SignInScreen(
+            providers: [
+              GoogleProvider(
+                  clientId:
+                      "675305167171-5iarv505kpfg0hd343rrmcrog2jtkk0r.apps.googleusercontent.com"), // new
+            ],
+            headerBuilder: (context, constraints, shrinkOffset) {
+              return Padding(
+                padding: const EdgeInsets.all(20),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.asset('assets/images/beekeepr_logo.png'),
+                ),
+              );
+            },
+            subtitleBuilder: (context, action) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: action == AuthAction.signIn
+                    ? const Text('Welcome to Beekeepr, please sign in!')
+                    : const Text('Welcome to Beekeepr, please sign up!'),
+              );
+            },
+            footerBuilder: (context, action) {
+              return const Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text(
+                  'By signing in, you agree to our terms and conditions.',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              );
+            },
+            sideBuilder: (context, shrinkOffset) {
+              return Padding(
+                padding: const EdgeInsets.all(20),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Image.asset('assets/images/beekeepr_logo.png'),
+                ),
+              );
+            },
+          );
+        }
+
+        return const MenuPage();
+      },
     );
   }
 }
