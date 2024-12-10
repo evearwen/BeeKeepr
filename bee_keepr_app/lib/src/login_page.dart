@@ -23,49 +23,63 @@ class LoginPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return SignInScreen(
-            providers: [
-              GoogleProvider(
-                  clientId:
-                      "675305167171-5iarv505kpfg0hd343rrmcrog2jtkk0r.apps.googleusercontent.com"), // new
-            ],
-            headerBuilder: (context, constraints, shrinkOffset) {
-              return Padding(
-                padding: const EdgeInsets.all(20),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.asset('assets/images/beekeepr_logo.png'),
-                ),
-              );
-            },
-            subtitleBuilder: (context, action) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: action == AuthAction.signIn
-                    ? const Text('Welcome to Beekeepr, please sign in!')
-                    : const Text('Welcome to Beekeepr, please sign up!'),
-              );
-            },
-            footerBuilder: (context, action) {
-              return const Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: Text(
-                  'By signing in, you agree to our terms and conditions.',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              );
-            },
-            sideBuilder: (context, shrinkOffset) {
-              return Padding(
-                padding: const EdgeInsets.all(20),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.asset('assets/images/beekeepr_logo.png'),
-                ),
-              );
-            },
-          );
+              providers: [
+                GoogleProvider(
+                    clientId:
+                        "675305167171-5iarv505kpfg0hd343rrmcrog2jtkk0r.apps.googleusercontent.com"), // new
+              ],
+              headerBuilder: (context, constraints, shrinkOffset) {
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.asset('assets/images/beekeepr_logo.png'),
+                  ),
+                );
+              },
+              subtitleBuilder: (context, action) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: action == AuthAction.signIn
+                      ? const Text('Welcome to Beekeepr, please sign in!')
+                      : const Text('Welcome to Beekeepr, please sign up!'),
+                );
+              },
+              footerBuilder: (context, action) {
+                return const Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: Text(
+                    'By signing in, you agree to our terms and conditions.',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                );
+              },
+              sideBuilder: (context, shrinkOffset) {
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height:
+                            300, // Shrink the image by controlling its height
+                        child: AspectRatio(
+                          aspectRatio: 1, // Keeps the image square
+                          child: Image.asset('assets/images/beekeepr_logo.png'),
+                        ),
+                      ),
+                      SizedBox(
+                          height: 10), // Add space between the image and text
+                      Text(
+                        'Save the Bees. Save the World.',
+                        style: TextStyle(fontSize: 30),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              });
         }
-
         return const MenuPage();
       },
     );

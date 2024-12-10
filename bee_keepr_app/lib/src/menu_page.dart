@@ -4,6 +4,7 @@ import 'package:bee_keepr_app/src/notes/notes.dart';
 import 'package:bee_keepr_app/src/learn_page.dart';
 import 'package:bee_keepr_app/src/settings_page.dart';
 import 'package:bee_keepr_app/src/Hive_Data/Hives.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 ///                         MENU PAGE
@@ -79,15 +80,22 @@ class MenuPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 80),
                       HexagonalButton(
-                          onPressed: () {
-                            // Return to Login Page
-                            Navigator.push(
+                        onPressed: () async {
+                          try {
+                            await FirebaseAuth.instance.signOut();
+                            // After signing out, navigate to the login page
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const LoginPage()),
+                              (route) => false, // Clear all previous routes
                             );
-                          },
-                          label: "Exit"),
+                          } catch (e) {
+                            print('Error signing out: $e');
+                          }
+                        },
+                        label: "Exit",
+                      ),
                       SizedBox(height: hexSpace),
                       HexagonalButton(
                           onPressed: () {
