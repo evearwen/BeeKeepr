@@ -27,7 +27,7 @@ class _LearnPageState extends State<LearnPage> {
 
   // Load lessons from json
   Future<void> loadLessons() async {
-    final data = await rootBundle.loadString('json/texts.json');
+    final data = await rootBundle.loadString('assets/json/texts.json');
     final jsonData = json.decode(data);
     setState(() {
       lessons = jsonData['lessons'];

@@ -36,7 +36,8 @@ class MenuPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
             )),
-        body: Center(
+        body: SingleChildScrollView(
+            child: Center(
           child: SizedBox(
               width: 400,
               height: 800,
@@ -152,7 +153,7 @@ class MenuPage extends StatelessWidget {
                       ],
                     ))
               ])),
-        ));
+        )));
   }
 }
 

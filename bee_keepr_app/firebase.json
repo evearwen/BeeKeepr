@@ -20,6 +20,6 @@
     }
   },
   "hosting": {
-    "source": "build/web"
+    "public": "build/web"
   }
 }
