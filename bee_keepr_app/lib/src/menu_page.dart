@@ -6,6 +6,7 @@ import 'package:bee_keepr_app/src/settings_page.dart';
 import 'package:bee_keepr_app/src/Hive_Data/Hives.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 ///                         MENU PAGE
 /// +----------------------------------------------------------+
@@ -13,6 +14,14 @@ import 'package:flutter/material.dart';
 /// |includes hexagonal menu buttons. This page has navigation |
 /// |to every other page in the application.                   |
 /// +----------------------------------------------------------+
+
+// redirects to Reddit
+_launchForum() async {
+  final Uri url = Uri.parse('https://www.reddit.com/r/Beekeeping/');
+  if (!await launchUrl(url)) {
+    throw Exception("Could not launch Forum");
+  }
+}
 
 // Main class for Menu Page
 class MenuPage extends StatelessWidget {
@@ -57,7 +66,7 @@ class MenuPage extends StatelessWidget {
                     const SizedBox(height: 150),
                     HexagonalButton(
                         onPressed: () {
-                          // Forum Navigation
+                          _launchForum();
                         },
                         label: "Forum"),
                     SizedBox(height: hexSpace),
